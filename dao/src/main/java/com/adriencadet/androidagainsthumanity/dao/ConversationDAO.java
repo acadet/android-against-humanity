@@ -20,8 +20,9 @@ import io.realm.Sort;
 class ConversationDAO extends BaseDAO implements IConversationDAO {
     private IConversationMapper conversationMapper;
 
-    ConversationDAO(RealmConfiguration realmConfiguration) {
+    ConversationDAO(RealmConfiguration realmConfiguration, IConversationMapper conversationMapper) {
         super(realmConfiguration);
+        this.conversationMapper = conversationMapper;
     }
 
     @Override

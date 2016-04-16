@@ -20,8 +20,10 @@ class MessageDAO extends BaseDAO implements IMessageDAO {
     private IMessageMapper messageMapper;
     private IUserDAO       userDAO;
 
-    MessageDAO(RealmConfiguration realmConfiguration) {
+    MessageDAO(RealmConfiguration realmConfiguration, IMessageMapper messageMapper, IUserDAO userDAO) {
         super(realmConfiguration);
+        this.messageMapper = messageMapper;
+        this.userDAO = userDAO;
     }
 
     @Override
