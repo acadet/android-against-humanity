@@ -4,6 +4,8 @@ package com.adriencadet.androidagainsthumanity.services.sockets;
 import android.content.Context;
 import android.content.Intent;
 
+import com.adriencadet.androidagainsthumanity.beans.Message;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -26,24 +28,27 @@ import rx.subjects.Subject;
 class JoinConversationJob {
     private static final Object observableLock = new Object();
 
-    private Map<String, Subject<String, String>> subject;
-    private Context                              context;
-    private ISocketServerAPI                     api;
+    private Map<String, Subject<Message, Message>> subjects;
+    private Context                                context;
+    private ISocketServerAPI                       api;
+    private IMessageMapper                         messageMapper;
 
-    JoinConversationJob(Context context, ISocketServerAPI api) {
+    JoinConversationJob(Context context, ISocketServerAPI api, IMessageMapper messageMapper) {
         this.context = context;
         this.api = api;
-        this.subject = new HashMap<>();
+        this.messageMapper = messageMapper;
+        this.subjects = new HashMap<>();
 
         SocketListenerService.subscribe(this);
     }
 
-    Observable<String> create(String slug) {
-        if (!subject.containsKey(slug)) {
+    Observable<Message> create(String slug) {
+        if (!subjects.containsKey(slug)) {
             synchronized (observableLock) {
-                if (!subject.containsKey(slug)) {
-                    Subject<String, String> s = PublishSubject.create();
-                    subject.put(slug, s);
+                if (!subjects.containsKey(slug)) {
+                    Subject<Message, Message> s = PublishSubject.create();
+
+                    subjects.put(slug, s);
 
                     Observable
                         .create(new Observable.OnSubscribe<Void>() {
@@ -79,13 +84,13 @@ class JoinConversationJob {
             }
         }
 
-        return subject.get(slug);
+        return subjects.get(slug);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onMessage(MessageEvent event) {
-        if (subject.containsKey(event.slug)) {
-            subject.get(event.slug).onNext(event.message);
+        if (subjects.containsKey(event.slug)) {
+            subjects.get(event.slug).onNext(messageMapper.map(event.data));
         }
     }
 }

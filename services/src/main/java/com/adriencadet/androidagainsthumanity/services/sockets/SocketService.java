@@ -1,5 +1,7 @@
 package com.adriencadet.androidagainsthumanity.services.sockets;
 
+import com.adriencadet.androidagainsthumanity.beans.Message;
+
 import rx.Observable;
 
 /**
@@ -24,12 +26,12 @@ class SocketService implements ISocketService {
     }
 
     @Override
-    public Observable<String> joinConversation(String slug) {
+    public Observable<Message> joinConversation(String slug) {
         return joinConversationJob.create(slug);
     }
 
     @Override
-    public Observable<Void> pushMessage(String slug, String message) {
+    public Observable<Void> pushMessage(String slug, Message message) {
         return pushMessageJob.create(slug, message);
     }
 }

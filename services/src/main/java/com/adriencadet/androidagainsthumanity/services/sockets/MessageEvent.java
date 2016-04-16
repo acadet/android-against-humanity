@@ -1,15 +1,17 @@
 package com.adriencadet.androidagainsthumanity.services.sockets;
 
+import org.json.JSONObject;
+
 /**
  * MessageEvent
  * <p>
  */
 class MessageEvent {
-    String slug;
-    String message;
+    String     slug;
+    JSONObject data;
 
-    MessageEvent(String slug, String message) {
+    MessageEvent(String slug, JSONObject data) {
         this.slug = slug;
-        this.message = message;
+        this.data = data;
     }
 }

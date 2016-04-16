@@ -11,6 +11,7 @@ import com.github.nkzawa.socketio.client.Socket;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.EventBusBuilder;
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -57,7 +58,7 @@ public class SocketListenerService extends Service {
 
                 sockets.put(slug, socket);
 
-                socket.on(MESSAGE_EVENT, (args) -> socketEventBus.post(new MessageEvent(slug, (String) args[0])));
+                socket.on(MESSAGE_EVENT, (args) -> socketEventBus.post(new MessageEvent(slug, (JSONObject) args[0])));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -91,6 +92,6 @@ public class SocketListenerService extends Service {
     }
 
     public static void pushMessage(MessageEvent event) {
-        instance.sockets.get(event.slug).emit(MESSAGE_EVENT, event.message);
+        instance.sockets.get(event.slug).emit(MESSAGE_EVENT, event.data);
     }
 }
