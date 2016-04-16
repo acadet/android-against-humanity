@@ -17,6 +17,7 @@ class UserBLL implements IUserBLL {
 
     @Override
     public Observable<String> generateNickname() {
+        //TODO later
         return null;
     }
 

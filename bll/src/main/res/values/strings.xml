@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">bll</string>
+
+    <string-array name="prefixes">
+        <item>What are my parents hiding from me?</item>
+        <item>What will always get you laid?</item>
+        <item>What did I bring back from Mexico?</item>
+        <item>What\'s my secret power?</item>
+        <item>What did the US airdrop to the children of Afghanistan?</item>
+        <item>What gets better with age?</item>
+        <item>Daddy, why is mommy crying?</item>
+        <item>What is Batman\'s guilty pleasure?</item>
+        <item>What ended my last relationship?</item>
+        <item>What\'s a girl\'s best friend?</item>
+        <item>I drink to forget</item>
+    </string-array>
+
+    <string-array name="suffixes">
+        <item>Justin Bieber</item>
+        <item>The Force</item>
+        <item>Masturbation</item>
+        <item>AIDS</item>
+        <item>The milk man</item>
+        <item>Friendly fire</item>
+        <item>Women\'s suffrage</item>
+        <item>Sean Penn</item>
+        <item>My vagina</item>
+        <item>The KKK</item>
+        <item>Poor life choices</item>
+    </string-array>
 </resources>

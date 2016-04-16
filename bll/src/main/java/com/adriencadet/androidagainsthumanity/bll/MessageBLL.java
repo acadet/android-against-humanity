@@ -3,6 +3,8 @@ package com.adriencadet.androidagainsthumanity.bll;
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.beans.Message;
 
+import org.javatuples.Pair;
+
 import java.util.List;
 
 import rx.Observable;
@@ -12,8 +14,14 @@ import rx.Observable;
  * <p>
  */
 class MessageBLL implements IMessageBLL {
-    private SortMessagesByDateAsc sortMessagesByDateAsc;
-    private PostMessageJob postMessageJob;
+    private ListMessageSuggestionsJob listMessageSuggestionsJob;
+    private SortMessagesByDateAsc     sortMessagesByDateAsc;
+    private PostMessageJob            postMessageJob;
+
+    @Override
+    public Observable<Pair<List<String>, List<String>>> listSuggestions() {
+        return listMessageSuggestionsJob.create();
+    }
 
     @Override
     public Observable<List<Message>> sortByDateAsc(Conversation conversation) {

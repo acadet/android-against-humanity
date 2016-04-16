@@ -35,6 +35,7 @@ dependencies {
     compile 'com.annimon:stream:1.0.6'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.1'
+    compile 'com.github.javatuples:javatuples:javatuples-1.2'
     compile project(':beans')
     compile project(':services')
     compile project(':dao')
