@@ -50,7 +50,7 @@ class ListMessageSuggestionsJob {
                         n--;
                     }
 
-                    outcome = new Pair<List<String>, List<String>>(
+                    outcome = new Pair<>(
                         Stream.of(prefixIndexes).map((e) -> prefixes[e]).collect(Collectors.toList()),
                         Stream.of(suffixIndexes).map((e) -> suffixes[e]).collect(Collectors.toList())
                     );

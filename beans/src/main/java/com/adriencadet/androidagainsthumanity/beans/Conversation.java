@@ -12,15 +12,17 @@ public class Conversation {
         return slug;
     }
 
-    public void setSlug(String slug) {
+    public Conversation setSlug(String slug) {
         this.slug = slug;
+        return this;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public Conversation setId(String id) {
         this.id = id;
+        return this;
     }
 }
