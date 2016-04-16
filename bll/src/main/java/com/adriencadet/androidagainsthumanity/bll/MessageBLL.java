@@ -18,6 +18,13 @@ class MessageBLL implements IMessageBLL {
     private SortMessagesByDateAsc     sortMessagesByDateAsc;
     private PostMessageJob            postMessageJob;
 
+    MessageBLL(ListMessageSuggestionsJob listMessageSuggestionsJob, SortMessagesByDateAsc sortMessagesByDateAsc,
+               PostMessageJob postMessageJob) {
+        this.listMessageSuggestionsJob = listMessageSuggestionsJob;
+        this.sortMessagesByDateAsc = sortMessagesByDateAsc;
+        this.postMessageJob = postMessageJob;
+    }
+
     @Override
     public Observable<Pair<List<String>, List<String>>> listSuggestions() {
         return listMessageSuggestionsJob.create();

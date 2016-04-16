@@ -13,6 +13,10 @@ import rx.schedulers.Schedulers;
 class GetUserNicknameJob {
     private IUserDAO userDAO;
 
+    GetUserNicknameJob(IUserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     Observable<String> create() {
         return Observable
             .create(new Observable.OnSubscribe<String>() {

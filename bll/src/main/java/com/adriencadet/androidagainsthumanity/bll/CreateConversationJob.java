@@ -16,6 +16,11 @@ class CreateConversationJob {
     private ISocketService   socketService;
     private IConversationDAO conversationDAO;
 
+    CreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO) {
+        this.socketService = socketService;
+        this.conversationDAO = conversationDAO;
+    }
+
     Observable<Conversation> create() {
         return Observable
             .create(new Observable.OnSubscribe<Conversation>() {

@@ -22,6 +22,10 @@ import rx.schedulers.Schedulers;
 class ListMessageSuggestionsJob {
     private Context context;
 
+    ListMessageSuggestionsJob(Context context) {
+        this.context = context;
+    }
+
     Observable<Pair<List<String>, List<String>>> create() {
         return Observable
             .create(new Observable.OnSubscribe<Pair<List<String>, List<String>>>() {

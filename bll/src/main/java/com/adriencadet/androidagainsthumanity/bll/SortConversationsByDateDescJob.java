@@ -16,6 +16,10 @@ import rx.schedulers.Schedulers;
 class SortConversationsByDateDescJob {
     private IConversationDAO conversationDAO;
 
+    SortConversationsByDateDescJob(IConversationDAO conversationDAO) {
+        this.conversationDAO = conversationDAO;
+    }
+
     Observable<List<Conversation>> create() {
         return Observable
             .create(new Observable.OnSubscribe<List<Conversation>>() {

@@ -17,6 +17,10 @@ import rx.schedulers.Schedulers;
 class SortMessagesByDateAsc {
     private IMessageDAO messageDAO;
 
+    SortMessagesByDateAsc(IMessageDAO messageDAO) {
+        this.messageDAO = messageDAO;
+    }
+
     Observable<List<Message>> create(Conversation conversation) {
         return Observable
             .create(new Observable.OnSubscribe<List<Message>>() {

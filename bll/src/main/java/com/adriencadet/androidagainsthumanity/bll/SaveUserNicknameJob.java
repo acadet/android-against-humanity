@@ -13,6 +13,10 @@ import rx.schedulers.Schedulers;
 class SaveUserNicknameJob {
     private IUserDAO userDAO;
 
+    SaveUserNicknameJob(IUserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     Observable<Void> create(String nickname) {
         return Observable
             .create(new Observable.OnSubscribe<Void>() {

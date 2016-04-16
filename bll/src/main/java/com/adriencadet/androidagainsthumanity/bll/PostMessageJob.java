@@ -19,6 +19,12 @@ class PostMessageJob {
     private IMessageDAO    messageDAO;
     private IUserDAO       userDAO;
 
+    PostMessageJob(ISocketService socketService, IMessageDAO messageDAO, IUserDAO userDAO) {
+        this.socketService = socketService;
+        this.messageDAO = messageDAO;
+        this.userDAO = userDAO;
+    }
+
     Observable<Void> create(Conversation conversation, String content) {
         return Observable
             .create(new Observable.OnSubscribe<Void>() {

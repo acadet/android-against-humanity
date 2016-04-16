@@ -42,4 +42,11 @@ public class SocketServiceFactory {
     PushMessageJob providePushMessageJob(IMessageMapper messageMapper) {
         return new PushMessageJob(messageMapper);
     }
+
+    @Provides
+    @Singleton
+    public ISocketService provideSocketService(CreateConversationJob createConversationJob, JoinConversationJob joinConversationJob,
+                                               PushMessageJob pushMessageJob) {
+        return new SocketService(createConversationJob, joinConversationJob, pushMessageJob);
+    }
 }

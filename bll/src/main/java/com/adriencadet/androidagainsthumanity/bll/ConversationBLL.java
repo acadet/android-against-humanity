@@ -16,8 +16,11 @@ class ConversationBLL implements IConversationBLL {
     private CreateConversationJob          createConversationJob;
     private JoinConversationJob            joinConversationJob;
 
-    ConversationBLL() {
-
+    ConversationBLL(SortConversationsByDateDescJob sortConversationsByDateDescJob, CreateConversationJob createConversationJob,
+                    JoinConversationJob joinConversationJob) {
+        this.sortConversationsByDateDescJob = sortConversationsByDateDescJob;
+        this.createConversationJob = createConversationJob;
+        this.joinConversationJob = joinConversationJob;
     }
 
 

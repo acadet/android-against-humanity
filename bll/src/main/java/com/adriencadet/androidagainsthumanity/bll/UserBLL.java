@@ -10,6 +10,11 @@ class UserBLL implements IUserBLL {
     private GetUserNicknameJob  getUserNicknameJob;
     private SaveUserNicknameJob saveUserNicknameJob;
 
+    UserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob) {
+        this.getUserNicknameJob = getUserNicknameJob;
+        this.saveUserNicknameJob = saveUserNicknameJob;
+    }
+
     @Override
     public Observable<String> getNickname() {
         return getUserNicknameJob.create();

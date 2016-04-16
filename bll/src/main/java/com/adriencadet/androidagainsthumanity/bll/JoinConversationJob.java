@@ -20,6 +20,12 @@ class JoinConversationJob {
     private IMessageDAO      messageDAO;
     private ISocketService   socketService;
 
+    JoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, ISocketService socketService) {
+        this.conversationDAO = conversationDAO;
+        this.messageDAO = messageDAO;
+        this.socketService = socketService;
+    }
+
     Observable<Message> create(String slug) {
         return
             Observable
