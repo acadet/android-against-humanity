@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Android Against Humanity</string>
+
+    <string name="conversation_list_no_content">No conversation :(</string>
+
+    <string name="conversation_no_message">Be the first to post!</string>
 </resources>

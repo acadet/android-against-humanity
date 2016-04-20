@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    style="@style/MatchParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <ListView
+        android:id="@+id/conversation_listview"
+        android:visibility="gone"
+        style="@style/MatchParent"
+        tools:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/conversation_no_message"
+        android:layout_centerInParent="true"
+        android:text="@string/conversation_no_message"
+        android:visibility="gone"
+        style="@style/WrapContent"
+        tools:visibility="visible"
+        />
+
+</RelativeLayout>
