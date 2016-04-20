@@ -26,6 +26,12 @@ public class SocketServiceFactory {
     }
 
     @Provides
+    ISocketServerAPI provideSocketServiceAPI() {
+        //TODO
+        return null;
+    }
+
+    @Provides
     @Singleton
     CreateConversationJob provideCreateConversationJob(ISocketServerAPI api) {
         return new CreateConversationJob(api);

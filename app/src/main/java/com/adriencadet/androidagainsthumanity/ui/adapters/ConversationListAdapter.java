@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  */
 public class ConversationListAdapter extends BaseAdapter<Conversation> {
 
-    private static class ViewHolder {
+    static class ViewHolder {
         @Bind(R.id.adapter_conversation_list_slug)
         TextView slugView;
 

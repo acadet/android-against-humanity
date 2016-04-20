@@ -6,7 +6,6 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floating_action_button"
-        android:fabSize="normal"
         style="@style/WrapContent"
         />
 
