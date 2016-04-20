@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/WrapContent.Vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <TextView
+        android:id="@+id/adapter_conversation_list_slug"
+        style="@style/WrapContent"
+        tools:text="My Conversation"
+        />
+
+</LinearLayout>

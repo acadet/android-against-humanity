@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Android Against Humanity</string>
 
+    <string name="create_join_action">Create or Join</string>
+    <string name="nickname_action">Nickname</string>
+
     <string name="conversation_list_no_content">No conversation :(</string>
 
     <string name="conversation_no_message">Be the first to post!</string>

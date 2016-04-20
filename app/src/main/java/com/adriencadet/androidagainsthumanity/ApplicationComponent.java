@@ -7,8 +7,11 @@ import com.adriencadet.androidagainsthumanity.ui.activities.BaseActivity;
 import com.adriencadet.androidagainsthumanity.ui.containers.BodyContainer;
 import com.adriencadet.androidagainsthumanity.ui.containers.FloatingButtonContainer;
 import com.adriencadet.androidagainsthumanity.ui.containers.MainContainer;
+import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.routers.MainRouter;
 import com.adriencadet.androidagainsthumanity.ui.routers.RouterFactory;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -16,6 +19,7 @@ import dagger.Component;
  * ApplicationComponent
  * <p>
  */
+@Singleton
 @Component(modules = {
     SocketServiceFactory.class,
     DAOFactory.class,
@@ -28,6 +32,9 @@ public interface ApplicationComponent {
 
     // Routers
     void inject(MainRouter mainRouter);
+
+    // Controllers
+    void inject(BaseController baseController);
 
     // Containers
     void inject(MainContainer mainContainer);
