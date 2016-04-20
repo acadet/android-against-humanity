@@ -18,5 +18,5 @@ public interface IMessageBLL {
 
     Observable<List<Message>> sortByDateAsc(Conversation conversation);
 
-    Observable<Void> post(Conversation conversation, String content);
+    Observable<Void> post(Conversation conversation, String prefix, String suffix);
 }

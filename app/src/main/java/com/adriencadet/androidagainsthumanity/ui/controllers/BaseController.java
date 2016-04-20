@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.adriencadet.androidagainsthumanity.AndroidAgainstHumanityApplication;
 import com.adriencadet.androidagainsthumanity.bll.IConversationBLL;
+import com.adriencadet.androidagainsthumanity.bll.IMessageBLL;
 import com.adriencadet.androidagainsthumanity.ui.routers.IRouter;
 import com.lyft.scoop.ViewController;
 
@@ -43,6 +44,9 @@ public abstract class BaseController extends ViewController {
 
     @Inject
     public IConversationBLL conversationBLL;
+
+    @Inject
+    public IMessageBLL messageBLL;
 
     @Override
     public void onAttach() {
