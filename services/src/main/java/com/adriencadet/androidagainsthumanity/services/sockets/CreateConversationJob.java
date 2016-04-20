@@ -20,8 +20,8 @@ class CreateConversationJob {
             .create(new Observable.OnSubscribe<String>() {
                 @Override
                 public void call(Subscriber<? super String> subscriber) {
-                    String slug = api.createSession();
-                    subscriber.onNext(slug);
+                    CreateConversationObject o = api.createSession();
+                    subscriber.onNext(o.session.slug);
                     subscriber.onCompleted();
                 }
             })

@@ -10,7 +10,7 @@ import retrofit.http.Path;
  */
 interface ISocketServerAPI {
     @POST("/sessions")
-    String createSession();
+    CreateConversationObject createSession();
 
     @PUT("/sessions/{slug}")
     Void joinSession(@Path("slug") String slug);

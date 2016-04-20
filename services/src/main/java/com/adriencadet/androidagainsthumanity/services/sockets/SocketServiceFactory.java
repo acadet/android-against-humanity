@@ -2,10 +2,15 @@ package com.adriencadet.androidagainsthumanity.services.sockets;
 
 import android.content.Context;
 
+import com.adriencadet.androidagainsthumanity.services.R;
+import com.google.gson.GsonBuilder;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit.RestAdapter;
+import retrofit.converter.GsonConverter;
 
 /**
  * SocketServiceFactory
@@ -26,9 +31,13 @@ public class SocketServiceFactory {
     }
 
     @Provides
-    ISocketServerAPI provideSocketServiceAPI() {
-        //TODO
-        return null;
+    ISocketServerAPI provideSocketServiceAPI(Context context) {
+        return new RestAdapter
+            .Builder()
+            .setEndpoint(context.getString(R.string.socket_api_endpoint))
+            .setConverter(new GsonConverter(new GsonBuilder().create()))
+            .build()
+            .create(ISocketServerAPI.class);
     }
 
     @Provides
