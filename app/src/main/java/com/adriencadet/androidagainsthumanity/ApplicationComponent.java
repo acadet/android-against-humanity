@@ -6,6 +6,7 @@ import com.adriencadet.androidagainsthumanity.services.sockets.SocketServiceFact
 import com.adriencadet.androidagainsthumanity.ui.activities.BaseActivity;
 import com.adriencadet.androidagainsthumanity.ui.containers.MainContainer;
 import com.adriencadet.androidagainsthumanity.ui.routers.MainRouter;
+import com.adriencadet.androidagainsthumanity.ui.routers.RouterFactory;
 
 import dagger.Component;
 
@@ -17,7 +18,8 @@ import dagger.Component;
     SocketServiceFactory.class,
     DAOFactory.class,
     BLLFactory.class,
-    ApplicationModule.class
+    ApplicationModule.class,
+    RouterFactory.class
 })
 public interface ApplicationComponent {
     void inject(BaseActivity baseActivity);
