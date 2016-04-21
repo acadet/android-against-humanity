@@ -5,18 +5,15 @@ import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationExtendedScreen;
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationFABScreen;
-import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationListExtendedScreen;
-import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationListFABScreen;
 import com.lyft.scoop.Screen;
 
 import butterknife.OnClick;
 
 /**
- * FloatingButtonController
+ * ConversationFABController
  * <p>
  */
-public class FloatingButtonController extends BaseController {
-    private boolean      isOnList;
+public class ConversationFABController extends BaseController {
     private Conversation conversation;
 
     @Override
@@ -28,19 +25,12 @@ public class FloatingButtonController extends BaseController {
     public void onAttach() {
         super.onAttach();
 
-        Screen screen = Screen.fromController(this);
-        isOnList = screen instanceof ConversationListFABScreen;
-        if (!isOnList) {
-            conversation = ((ConversationFABScreen) screen).conversation;
-        }
+        ConversationFABScreen screen = Screen.fromController(this);
+        conversation = screen.conversation;
     }
 
     @OnClick(R.id.floating_action_button)
     public void onButtonClicked() {
-        if (isOnList) {
-            mainRouter.goTo(new ConversationListExtendedScreen());
-        } else {
-            mainRouter.goTo(new ConversationExtendedScreen(conversation));
-        }
+        mainRouter.goTo(new ConversationExtendedScreen(conversation));
     }
 }
