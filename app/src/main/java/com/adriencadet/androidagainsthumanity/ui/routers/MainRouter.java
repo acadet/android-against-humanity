@@ -7,8 +7,7 @@ import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationEx
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationFABScreen;
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationListExtendedScreen;
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationListFABScreen;
-import com.adriencadet.androidagainsthumanity.ui.screens.main.DetailsScreen;
-import com.adriencadet.androidagainsthumanity.ui.screens.main.InitScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.main.InitMainScreen;
 import com.lyft.scoop.Screen;
 import com.lyft.scoop.ScreenScooper;
 
@@ -41,11 +40,10 @@ public class MainRouter extends BaseRouter {
     @Override
     public void goTo(Screen screen) {
         if (screen instanceof ConversationListScreen) {
-            super.goTo(new InitScreen());
+            super.goTo(new InitMainScreen());
             bodyRouter.goTo(screen);
             floatingButtonRouter.goTo(new ConversationListFABScreen());
         } else if (screen instanceof JoinConversationScreen) {
-            super.goTo(new DetailsScreen());
             bodyRouter.goTo(screen);
             floatingButtonRouter.goTo(new ConversationFABScreen(((JoinConversationScreen) screen).conversation));
         } else if (screen instanceof ConversationListExtendedScreen || screen instanceof ConversationExtendedScreen) {
@@ -63,7 +61,10 @@ public class MainRouter extends BaseRouter {
         }
 
         floatingButtonRouter.goBack();
-        bodyRouter.goBack();
-        return super.goBack();
+        if (!bodyRouter.goBack()) {
+            return super.goBack();
+        }
+
+        return true;
     }
 }

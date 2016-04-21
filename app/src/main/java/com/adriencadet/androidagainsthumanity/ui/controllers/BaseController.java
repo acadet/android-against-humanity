@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import rx.Subscriber;
+import timber.log.Timber;
 
 /**
  * BaseController
@@ -33,6 +34,7 @@ public abstract class BaseController extends ViewController {
              Timber.e(e, "Unhandled error");
              }
              */
+            Timber.e(e, "Unhandled error");
         }
     }
 

@@ -5,9 +5,9 @@ import com.lyft.scoop.Controller;
 import com.lyft.scoop.Screen;
 
 /**
- * InitScreen
+ * InitMainScreen
  * <p>
  */
 @Controller(MainController.class)
-public class InitScreen extends Screen {
+public class InitMainScreen extends Screen {
 }

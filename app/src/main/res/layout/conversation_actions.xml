@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    style="@style/MatchParentWrapContent"
+<LinearLayout
+    style="@style/MatchParentWrapContent.Vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <ListView
-        android:id="@+id/conversation_actions_listview"
-        style="@style/MatchParentWrapContent"
+    <TextView
+        android:id="@+id/conversation_actions_suggestion_1"
+        style="@style/WrapContent"
+        tools:text="My suggestion"
         />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/conversation_actions_suggestion_2"
+        style="@style/WrapContent"
+        tools:text="My suggestion"
+        />
+
+
+    <TextView
+        android:id="@+id/conversation_actions_suggestion_3"
+        style="@style/WrapContent"
+        tools:text="My suggestion"
+        />
+
+    <TextView
+        android:id="@+id/conversation_actions_suggestion_4"
+        style="@style/WrapContent"
+        tools:text="My suggestion"
+        />
+
+</LinearLayout>

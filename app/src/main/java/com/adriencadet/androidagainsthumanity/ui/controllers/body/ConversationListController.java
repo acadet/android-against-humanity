@@ -11,6 +11,7 @@ import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.nineoldandroids.animation.Animator;
 
 import java.util.List;
 
@@ -33,8 +34,31 @@ public class ConversationListController extends BaseController {
     TextView noContentLabelView;
 
     private void showView(View view) {
-        view.setVisibility(View.VISIBLE);
-        YoYo.with(Techniques.FadeIn).delay(300).playOn(view);
+        YoYo
+            .with(Techniques.FadeIn)
+            .withListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    view.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            })
+            .delay(300)
+            .playOn(view);
     }
 
     @Override

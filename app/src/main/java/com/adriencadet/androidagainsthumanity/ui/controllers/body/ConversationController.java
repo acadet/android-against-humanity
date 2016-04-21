@@ -14,6 +14,7 @@ import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScre
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.lyft.scoop.Screen;
+import com.nineoldandroids.animation.Animator;
 
 import java.util.List;
 
@@ -39,8 +40,31 @@ public class ConversationController extends BaseController {
     ListView listView;
 
     private void show(View view) {
-        view.setVisibility(View.VISIBLE);
-        YoYo.with(Techniques.FadeIn).duration(300).playOn(view);
+        YoYo
+            .with(Techniques.FadeIn)
+            .withListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    view.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            })
+            .duration(300)
+            .playOn(view);
     }
 
     private void hide(View view) {

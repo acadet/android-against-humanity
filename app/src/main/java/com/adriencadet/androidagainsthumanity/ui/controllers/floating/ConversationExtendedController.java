@@ -1,9 +1,8 @@
 package com.adriencadet.androidagainsthumanity.ui.controllers.floating;
 
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adriencadet.androidagainsthumanity.R;
-import com.adriencadet.androidagainsthumanity.ui.adapters.MessageSuggestionAdapter;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.floating.ConversationExtendedScreen;
 import com.lyft.scoop.Screen;
@@ -21,11 +20,13 @@ import rx.android.schedulers.AndroidSchedulers;
  * <p>
  */
 public class ConversationExtendedController extends BaseController {
-    private Subscription                     listSuggestionSubscription;
-    private Pair<List<String>, List<String>> suggestions;
+    private Subscription listSuggestionSubscription;
 
-    @Bind(R.id.conversation_actions_listview)
-    ListView listView;
+    @Bind({ R.id.conversation_actions_suggestion_1,
+            R.id.conversation_actions_suggestion_2,
+            R.id.conversation_actions_suggestion_3,
+            R.id.conversation_actions_suggestion_4 })
+    List<TextView> textViewList;
 
     @Override
     protected int layoutId() {
@@ -44,34 +45,29 @@ public class ConversationExtendedController extends BaseController {
             .subscribe(new BaseSubscriber<Pair<List<String>, List<String>>>() {
                 @Override
                 public void onCompleted() {
-                    listView.setAdapter(
-                        new MessageSuggestionAdapter(
-                            context,
-                            suggestions.getValue0(),
-                            true,
-                            (s1) -> {
-                                listView.setAdapter(
-                                    new MessageSuggestionAdapter(
-                                        context,
-                                        suggestions.getValue1(),
-                                        false,
-                                        (s2) -> {
-                                            if (screen.hasConversation()) {
-                                                messageBLL.post(screen.conversation, s1, s2);
-                                            } else {
-                                                messageBLL.post(screen.slug, s1, s2);
-                                            }
-                                        }
-                                    )
-                                );
-                            }
-                        )
-                    );
                 }
 
                 @Override
-                public void onNext(Pair<List<String>, List<String>> objects) {
-                    suggestions = objects;
+                public void onNext(Pair<List<String>, List<String>> suggestions) {
+                    int i = 0;
+                    for (String prefix : suggestions.getValue0()) {
+                        TextView t1 = textViewList.get(i++);
+                        t1.setText(prefix);
+                        t1.setOnClickListener((v1) -> {
+                            int j = 0;
+                            for (String suffix : suggestions.getValue1()) {
+                                TextView t2 = textViewList.get(j++);
+                                t2.setText(suffix);
+                                t2.setOnClickListener((v2) -> {
+                                    if (screen.hasConversation()) {
+                                        messageBLL.post(screen.conversation, prefix, suffix);
+                                    } else {
+                                        messageBLL.post(screen.slug, prefix, suffix);
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
             });
     }

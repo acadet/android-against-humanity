@@ -73,8 +73,8 @@ public class JoinConversationModalController extends BaseController {
 
                 @Override
                 public void onNext(Conversation conversation) {
-                    mainRouter.goTo(new JoinConversationScreen(conversation));
                     modalRouter.resetTo(new InitModalScreen());
+                    mainRouter.goTo(new JoinConversationScreen(conversation));
                 }
             });
     }
