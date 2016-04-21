@@ -2,6 +2,7 @@ package com.adriencadet.androidagainsthumanity.ui.controllers.floating;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
+import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 
 import butterknife.OnClick;
 
@@ -21,13 +22,10 @@ public class ConversationListExtendedController extends BaseController {
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
     @OnClick(R.id.conversation_list_actions_nickname)
     public void onNickname() {
-
+        modalRouter.goTo(new NicknameModalScreen());
+        //TODO: replace by end or something similar
+        mainRouter.goBack();
     }
 }
