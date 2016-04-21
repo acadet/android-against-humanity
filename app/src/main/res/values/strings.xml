@@ -16,4 +16,6 @@
     <string name="modal_join_conversation_hint">Type the name of the conversation you would like to join</string>
     <string name="modal_join_conversation_join">Join</string>
     <string name="modal_join_conversation_create">Create a new one</string>
+
+    <string name="from_who">From %1$s</string>
 </resources>

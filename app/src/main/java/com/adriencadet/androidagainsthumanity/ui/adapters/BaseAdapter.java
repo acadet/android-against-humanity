@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.annimon.stream.Stream;
+
 import java.util.List;
 
 /**
@@ -49,5 +51,15 @@ abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void add(T item) {
+        items.add(item);
+        notifyDataSetChanged();
+    }
+
+    public void add(List<T> items) {
+        Stream.of(items).forEach(this.items::add);
+        notifyDataSetChanged();
     }
 }

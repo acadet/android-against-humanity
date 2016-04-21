@@ -18,6 +18,8 @@ public interface IMessageBLL {
 
     Observable<List<Message>> sortByDateAsc(Conversation conversation);
 
+    Observable<List<Message>> sortByDateAsc(String slug);
+
     Observable<Void> post(Conversation conversation, String prefix, String suffix);
 
     Observable<Void> post(String slug, String prefix, String suffix);

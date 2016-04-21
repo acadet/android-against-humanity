@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/MatchParentWrapContent.Vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <TextView
+        android:id="@+id/adapter_message_list_content"
+        style="@style/WrapContent"
+        tools:text="Content of message"
+        />
+
+    <TextView
+        android:id="@+id/adapter_message_list_poster"
+        style="@style/WrapContent"
+        tools:text="@string/from_who"
+        />
+
+    <TextView
+        android:id="@+id/adapter_message_list_posted_at"
+        style="@style/WrapContent"
+        tools:text="47 minutes ago"
+        />
+
+</LinearLayout>

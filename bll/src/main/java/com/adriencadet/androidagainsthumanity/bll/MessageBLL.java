@@ -36,6 +36,11 @@ class MessageBLL implements IMessageBLL {
     }
 
     @Override
+    public Observable<List<Message>> sortByDateAsc(String slug) {
+        return null;
+    }
+
+    @Override
     public Observable<Void> post(Conversation conversation, String prefix, String suffix) {
         return postMessageJob.create(conversation, prefix + " " + suffix);
     }
