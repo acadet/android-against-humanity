@@ -5,7 +5,7 @@ import com.lyft.scoop.Controller;
 import com.lyft.scoop.Screen;
 
 /**
- * ConversationListScreen
+ * ConversationListFABScreen
  * <p>
  */
 @Controller(ConversationListController.class)

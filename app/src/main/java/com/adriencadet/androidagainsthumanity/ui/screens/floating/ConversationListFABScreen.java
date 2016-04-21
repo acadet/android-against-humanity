@@ -5,9 +5,9 @@ import com.lyft.scoop.Controller;
 import com.lyft.scoop.Screen;
 
 /**
- * ConversationListScreen
+ * ConversationListFABScreen
  * <p>
  */
 @Controller(FloatingButtonController.class)
-public class ConversationListScreen extends Screen {
+public class ConversationListFABScreen extends Screen {
 }

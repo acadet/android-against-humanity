@@ -31,6 +31,7 @@ public class ConversationListController extends BaseController {
     TextView noContentLabelView;
 
     private void showView(View view) {
+        view.setVisibility(View.VISIBLE);
         YoYo.with(Techniques.FadeIn).delay(300).playOn(view);
     }
 
@@ -63,12 +64,12 @@ public class ConversationListController extends BaseController {
                 @Override
                 public void onNext(List<Conversation> conversations) {
                     if (conversations.isEmpty()) {
+                        listView.setVisibility(View.GONE);
+                        showView(noContentLabelView);
+                    } else {
                         noContentLabelView.setVisibility(View.GONE);
                         listView.setAdapter(new ConversationListAdapter(context, conversations));
                         showView(listView);
-                    } else {
-                        listView.setVisibility(View.GONE);
-                        showView(noContentLabelView);
                     }
                 }
             });

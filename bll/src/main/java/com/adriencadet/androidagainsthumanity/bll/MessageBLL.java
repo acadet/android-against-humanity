@@ -36,7 +36,7 @@ class MessageBLL implements IMessageBLL {
     }
 
     @Override
-    public Observable<Void> post(Conversation conversation, String content) {
-        return postMessageJob.create(conversation, content);
+    public Observable<Void> post(Conversation conversation, String prefix, String suffix) {
+        return postMessageJob.create(conversation, prefix + " " + suffix);
     }
 }

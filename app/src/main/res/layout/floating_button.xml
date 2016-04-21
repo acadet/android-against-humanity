@@ -4,9 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageView
         android:id="@+id/floating_action_button"
-        style="@style/WrapContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_plus"
         />
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:id="@+id/floating_action_button"-->
+    <!--android:src="@drawable/ic_plus"-->
+    <!--style="@style/WrapContent"-->
+    <!--app:elevation="4dp"-->
+    <!--/>-->
 
 </RelativeLayout>

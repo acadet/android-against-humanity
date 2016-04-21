@@ -28,6 +28,7 @@ import rx.subjects.Subject;
 class JoinConversationJob {
     private static final Object observableLock = new Object();
 
+    private boolean                                hasSubscribedToBus;
     private Map<String, Subject<Message, Message>> subjects;
     private Context                                context;
     private ISocketServerAPI                       api;
@@ -38,17 +39,21 @@ class JoinConversationJob {
         this.api = api;
         this.messageMapper = messageMapper;
         this.subjects = new HashMap<>();
-
-        SocketListenerService.subscribe(this);
+        this.hasSubscribedToBus = false;
     }
 
     Observable<Message> create(String slug) {
         if (!subjects.containsKey(slug)) {
             synchronized (observableLock) {
                 if (!subjects.containsKey(slug)) {
-                    Subject<Message, Message> s = PublishSubject.create();
+                    Subject<Message, Message> subject = PublishSubject.create();
 
-                    subjects.put(slug, s);
+                    subjects.put(slug, subject);
+
+                    if (!hasSubscribedToBus) {
+                        hasSubscribedToBus = true;
+                        SocketListenerService.subscribe(this);
+                    }
 
                     Observable
                         .create(new Observable.OnSubscribe<Void>() {

@@ -21,6 +21,11 @@ public class ConversationListExtendedController extends BaseController {
 
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
     @OnClick(R.id.conversation_list_actions_nickname)
     public void onNickname() {
 
