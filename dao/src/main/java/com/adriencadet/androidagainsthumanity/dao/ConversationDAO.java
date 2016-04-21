@@ -25,6 +25,10 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
         this.conversationMapper = conversationMapper;
     }
 
+    private ConversationDTO findBySlug(Realm dal, String slug) {
+        return dal.where(ConversationDTO.class).equalTo("slug", slug).findFirst();
+    }
+
     @Override
     public List<Conversation> sortByDateDesc() {
         Realm dal = getRealmInstance();
@@ -54,12 +58,30 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
     }
 
     @Override
+    public Conversation findBySlug(String slug) {
+        Realm dal = getRealmInstance();
+        Conversation outcome;
+        ConversationDTO source;
+
+        source = findBySlug(dal, slug);
+        if (source == null) {
+            dal.close();
+            return null;
+        }
+
+        outcome = conversationMapper.map(source);
+        dal.close();
+
+        return outcome;
+    }
+
+    @Override
     public Conversation save(String slug) {
         ConversationDTO conversation;
         Realm dal = getRealmInstance();
         Conversation outcome;
 
-        conversation = dal.where(ConversationDTO.class).equalTo("slug", slug).findFirst();
+        conversation = findBySlug(dal, slug);
         if (conversation == null) {
             conversation = new ConversationDTO();
             conversation.setId(UUID.randomUUID().toString());

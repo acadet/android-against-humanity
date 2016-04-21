@@ -37,7 +37,7 @@ class MessageBLL implements IMessageBLL {
 
     @Override
     public Observable<List<Message>> sortByDateAsc(String slug) {
-        return null;
+        return sortMessagesByDateAsc.create(slug);
     }
 
     @Override
@@ -47,6 +47,6 @@ class MessageBLL implements IMessageBLL {
 
     @Override
     public Observable<Void> post(String slug, String prefix, String suffix) {
-        return null;
+        return postMessageJob.create(slug, prefix + " " + suffix);
     }
 }

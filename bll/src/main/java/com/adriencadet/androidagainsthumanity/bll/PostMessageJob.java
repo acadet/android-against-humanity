@@ -2,6 +2,7 @@ package com.adriencadet.androidagainsthumanity.bll;
 
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.beans.Message;
+import com.adriencadet.androidagainsthumanity.dao.IConversationDAO;
 import com.adriencadet.androidagainsthumanity.dao.IMessageDAO;
 import com.adriencadet.androidagainsthumanity.dao.IUserDAO;
 import com.adriencadet.androidagainsthumanity.services.sockets.ISocketService;
@@ -15,12 +16,14 @@ import rx.schedulers.Schedulers;
  * <p>
  */
 class PostMessageJob {
-    private ISocketService socketService;
-    private IMessageDAO    messageDAO;
-    private IUserDAO       userDAO;
+    private ISocketService   socketService;
+    private IConversationDAO conversationDAO;
+    private IMessageDAO      messageDAO;
+    private IUserDAO         userDAO;
 
-    PostMessageJob(ISocketService socketService, IMessageDAO messageDAO, IUserDAO userDAO) {
+    PostMessageJob(ISocketService socketService, IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO) {
         this.socketService = socketService;
+        this.conversationDAO = conversationDAO;
         this.messageDAO = messageDAO;
         this.userDAO = userDAO;
     }
@@ -53,6 +56,25 @@ class PostMessageJob {
 
                             }
                         });
+                }
+            })
+            .subscribeOn(Schedulers.newThread());
+    }
+
+    Observable<Void> create(String slug, String content) {
+        return Observable
+            .create(new Observable.OnSubscribe<Void>() {
+                @Override
+                public void call(Subscriber<? super Void> subscriber) {
+                    Conversation conversation = conversationDAO.findBySlug(slug);
+
+                    if (conversation == null) {
+                        conversation = conversationDAO.save(slug);
+                    }
+
+                    create(conversation, content)
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(subscriber);
                 }
             })
             .subscribeOn(Schedulers.newThread());

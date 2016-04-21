@@ -11,5 +11,7 @@ import java.util.List;
 public interface IConversationDAO {
     List<Conversation> sortByDateDesc();
 
+    Conversation findBySlug(String slug);
+
     Conversation save(String slug);
 }

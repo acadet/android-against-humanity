@@ -44,8 +44,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    PostMessageJob providePostMessageJob(ISocketService socketService, IMessageDAO messageDAO, IUserDAO userDAO) {
-        return new PostMessageJob(socketService, messageDAO, userDAO);
+    PostMessageJob providePostMessageJob(ISocketService socketService, IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO) {
+        return new PostMessageJob(socketService, conversationDAO, messageDAO, userDAO);
     }
 
     @Provides
@@ -62,8 +62,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    SortMessagesByDateAsc provideSortMessagesByDateAsc(IMessageDAO messageDAO) {
-        return new SortMessagesByDateAsc(messageDAO);
+    SortMessagesByDateAsc provideSortMessagesByDateAsc(IConversationDAO conversationDAO, IMessageDAO messageDAO) {
+        return new SortMessagesByDateAsc(conversationDAO, messageDAO);
     }
 
     @Provides
