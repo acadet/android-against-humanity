@@ -40,6 +40,7 @@ class MessageDAO extends BaseDAO implements IMessageDAO {
     @Override
     public Message saveOutgoing(Conversation conversation, String content) {
         MessageDTO message = new MessageDTO();
+        Message outcome;
         Realm dal = getRealmInstance();
 
         message.setId(UUID.randomUUID().toString());
@@ -53,7 +54,11 @@ class MessageDAO extends BaseDAO implements IMessageDAO {
         dal.copyToRealm(message);
         dal.commitTransaction();
 
-        return messageMapper.map(message);
+        outcome = messageMapper.map(message);
+
+        dal.close();
+
+        return outcome;
     }
 
     @Override
@@ -65,5 +70,6 @@ class MessageDAO extends BaseDAO implements IMessageDAO {
         dal.beginTransaction();
         dal.copyToRealm(messageDTO);
         dal.commitTransaction();
+        dal.close();
     }
 }

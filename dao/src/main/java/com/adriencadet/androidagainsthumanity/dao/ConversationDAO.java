@@ -48,6 +48,8 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
                 }
             });
 
+        dal.close();
+
         return outcome;
     }
 
@@ -55,6 +57,7 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
     public Conversation save(String slug) {
         ConversationDTO conversation = new ConversationDTO();
         Realm dal = getRealmInstance();
+        Conversation outcome;
 
         conversation.setId(UUID.randomUUID().toString());
         conversation.setSlug(slug);
@@ -63,6 +66,9 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
         dal.copyToRealm(conversation);
         dal.commitTransaction();
 
-        return conversationMapper.map(conversation);
+        outcome = conversationMapper.map(conversation);
+        dal.close();
+
+        return outcome;
     }
 }
