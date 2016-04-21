@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        
         modalRouter.resetTo(new InitModalScreen());
         if (!mainRouter.hasActiveScreen()) {
             mainRouter.goTo(new ConversationListScreen());
@@ -38,7 +38,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (modalRouter.hasActiveScreen()) {
+            modalRouter.goBack();
+            return;
+        }
         if (!mainRouter.goBack()) {
+            modalRouter.resetTo(new InitModalScreen());
             super.onBackPressed();
         }
     }
