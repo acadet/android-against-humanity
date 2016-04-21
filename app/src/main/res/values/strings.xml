@@ -13,4 +13,7 @@
     <string name="modal_nickname_random">I don\'t have time for this</string>
     <string name="modal_nickname_confirmation">Your nickname is %1$s</string>
 
+    <string name="modal_join_conversation_hint">Type the name of the conversation you would like to join</string>
+    <string name="modal_join_conversation_join">Join</string>
+    <string name="modal_join_conversation_create">Create a new one</string>
 </resources>

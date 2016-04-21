@@ -56,7 +56,11 @@ public class ConversationExtendedController extends BaseController {
                                         suggestions.getValue1(),
                                         false,
                                         (s2) -> {
-                                            messageBLL.post(screen.conversation, s1, s2);
+                                            if (screen.hasConversation()) {
+                                                messageBLL.post(screen.conversation, s1, s2);
+                                            } else {
+                                                messageBLL.post(screen.slug, s1, s2);
+                                            }
                                         }
                                     )
                                 );

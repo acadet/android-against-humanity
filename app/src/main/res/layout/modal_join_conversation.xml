@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:background="@color/colorPrimary"
+    style="@style/MatchParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:layout_gravity="center"
+        style="@style/WrapContent.Vertical"
+        >
+
+        <TextView
+            android:text="@string/modal_join_conversation_hint"
+            style="@style/WrapContent"
+            />
+
+        <EditText
+            android:id="@+id/modal_join_conversation_edittext"
+            style="@style/WrapContent"
+            />
+
+        <Button
+            android:id="@+id/modal_join_conversation_create"
+            android:text="@string/modal_join_conversation_create"
+            style="@style/WrapContent"
+            />
+
+        <Button
+            android:id="@+id/modal_join_conversation_join"
+            android:text="@string/modal_join_conversation_join"
+            style="@style/WrapContent"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

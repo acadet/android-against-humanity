@@ -17,8 +17,17 @@ import com.lyft.scoop.Screen;
 @ExitTransition(AutoTransition.class)
 public class ConversationExtendedScreen extends Screen {
     public Conversation conversation;
+    public String       slug;
 
     public ConversationExtendedScreen(Conversation conversation) {
         this.conversation = conversation;
+    }
+
+    public ConversationExtendedScreen(String slug) {
+        this.slug = slug;
+    }
+
+    public boolean hasConversation() {
+        return conversation != null;
     }
 }
