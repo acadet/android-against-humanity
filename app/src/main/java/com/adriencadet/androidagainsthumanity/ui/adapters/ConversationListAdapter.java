@@ -5,10 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.adriencadet.androidagainsthumanity.AndroidAgainstHumanityApplication;
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
+import com.adriencadet.androidagainsthumanity.ui.routers.IRouter;
+import com.adriencadet.androidagainsthumanity.ui.screens.JoinConversationScreen;
 
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +25,11 @@ import butterknife.ButterKnife;
  */
 public class ConversationListAdapter extends BaseAdapter<Conversation> {
 
-    static class ViewHolder {
+    @Inject
+    @Named("main")
+    IRouter mainRouter;
+
+    class ViewHolder {
         @Bind(R.id.adapter_conversation_list_slug)
         TextView slugView;
 
@@ -30,6 +40,8 @@ public class ConversationListAdapter extends BaseAdapter<Conversation> {
 
     public ConversationListAdapter(Context context, List<Conversation> items) {
         super(context, items);
+
+        AndroidAgainstHumanityApplication.getApplicationComponent().inject(this);
     }
 
     @Override
@@ -48,6 +60,10 @@ public class ConversationListAdapter extends BaseAdapter<Conversation> {
         }
 
         holder.slugView.setText(item.getSlug());
+
+        view.setOnClickListener((v) -> {
+            mainRouter.goTo(new JoinConversationScreen(item));
+        });
 
         return view;
     }

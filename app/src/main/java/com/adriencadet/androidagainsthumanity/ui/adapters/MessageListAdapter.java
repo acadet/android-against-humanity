@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  */
 public class MessageListAdapter extends BaseAdapter<Message> {
 
-    public class ViewHolder {
+    class ViewHolder {
         @Bind(R.id.adapter_message_list_content)
         TextView content;
 
