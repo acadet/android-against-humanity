@@ -19,6 +19,10 @@ public abstract class BaseActivity extends Activity {
     @Named("main")
     IRouter mainRouter;
 
+    @Inject
+    @Named("modal")
+    IRouter modalRouter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

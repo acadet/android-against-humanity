@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.ui.screens.ConversationListScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.modal.InitModalScreen;
 import com.lyft.scoop.Scoop;
 
 public class MainActivity extends BaseActivity {
@@ -23,6 +24,7 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
+        modalRouter.resetTo(new InitModalScreen());
         if (!mainRouter.hasActiveScreen()) {
             mainRouter.goTo(new ConversationListScreen());
         }

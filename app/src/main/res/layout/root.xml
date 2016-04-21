@@ -7,7 +7,7 @@
         />
 
     <com.adriencadet.androidagainsthumanity.ui.containers.ModalContainer
-        style="@style/WrapContent"
+        style="@style/MatchParent"
         />
 
 </RelativeLayout>
