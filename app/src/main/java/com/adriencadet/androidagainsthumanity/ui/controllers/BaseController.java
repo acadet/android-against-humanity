@@ -5,6 +5,7 @@ import android.content.Context;
 import com.adriencadet.androidagainsthumanity.AndroidAgainstHumanityApplication;
 import com.adriencadet.androidagainsthumanity.bll.IConversationBLL;
 import com.adriencadet.androidagainsthumanity.bll.IMessageBLL;
+import com.adriencadet.androidagainsthumanity.bll.IUserBLL;
 import com.adriencadet.androidagainsthumanity.ui.routers.IRouter;
 import com.lyft.scoop.ViewController;
 
@@ -43,10 +44,17 @@ public abstract class BaseController extends ViewController {
     public IRouter mainRouter;
 
     @Inject
+    @Named("modal")
+    public IRouter modalRouter;
+
+    @Inject
     public IConversationBLL conversationBLL;
 
     @Inject
     public IMessageBLL messageBLL;
+
+    @Inject
+    public IUserBLL userBLL;
 
     @Override
     public void onAttach() {

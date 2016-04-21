@@ -34,4 +34,11 @@ public class RouterFactory {
     public IRouter provideFloatingButtonRouter() {
         return new FloatingButtonRouter(new ScreenScooper());
     }
+
+    @Provides
+    @Named("modal")
+    @Singleton
+    public IRouter provideModalRouter() {
+        return new ModalRouter(new ScreenScooper());
+    }
 }
