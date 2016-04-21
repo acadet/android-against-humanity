@@ -9,10 +9,12 @@ import rx.Observable;
 class UserBLL implements IUserBLL {
     private GetUserNicknameJob  getUserNicknameJob;
     private SaveUserNicknameJob saveUserNicknameJob;
+    private HasUserNicknameJob  hasUserNicknameJob;
 
-    UserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob) {
+    UserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
         this.getUserNicknameJob = getUserNicknameJob;
         this.saveUserNicknameJob = saveUserNicknameJob;
+        this.hasUserNicknameJob = hasUserNicknameJob;
     }
 
     @Override
@@ -29,5 +31,10 @@ class UserBLL implements IUserBLL {
     @Override
     public Observable<Void> saveNickname(String nickname) {
         return saveUserNicknameJob.create(nickname);
+    }
+
+    @Override
+    public Observable<Boolean> hasNickname() {
+        return hasUserNicknameJob.create();
     }
 }

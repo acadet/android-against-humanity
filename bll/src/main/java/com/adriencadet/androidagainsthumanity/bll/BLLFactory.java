@@ -68,6 +68,12 @@ public class BLLFactory {
 
     @Provides
     @Singleton
+    HasUserNicknameJob provideHasUserNicknameJob(IUserDAO userDAO) {
+        return new HasUserNicknameJob(userDAO);
+    }
+
+    @Provides
+    @Singleton
     IMessageBLL provideMessageBLL(ListMessageSuggestionsJob listMessageSuggestionsJob, SortMessagesByDateAsc sortMessagesByDateAsc,
                                   PostMessageJob postMessageJob) {
         return new MessageBLL(listMessageSuggestionsJob, sortMessagesByDateAsc, postMessageJob);
@@ -75,8 +81,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    IUserBLL provideUserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob) {
-        return new UserBLL(getUserNicknameJob, saveUserNicknameJob);
+    IUserBLL provideUserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
+        return new UserBLL(getUserNicknameJob, saveUserNicknameJob, hasUserNicknameJob);
     }
 
     @Provides

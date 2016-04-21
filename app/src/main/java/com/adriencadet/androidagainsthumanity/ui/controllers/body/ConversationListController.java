@@ -8,6 +8,7 @@ import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.ui.adapters.ConversationListAdapter;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
+import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
@@ -22,6 +23,7 @@ import rx.android.schedulers.AndroidSchedulers;
  * <p>
  */
 public class ConversationListController extends BaseController {
+    private Subscription hasNicknameSubscription;
     private Subscription sortByDateDescSubscription;
 
     @Bind(R.id.conversation_list_listview)
@@ -43,6 +45,23 @@ public class ConversationListController extends BaseController {
     @Override
     public void onAttach() {
         super.onAttach();
+
+        hasNicknameSubscription = userBLL
+            .hasNickname()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new BaseSubscriber<Boolean>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onNext(Boolean hasNickame) {
+                    if (!hasNickame) {
+                        modalRouter.goTo(new NicknameModalScreen());
+                    }
+                }
+            });
 
         sortByDateDescSubscription = conversationBLL
             .sortByDateDesc()
@@ -78,6 +97,10 @@ public class ConversationListController extends BaseController {
     @Override
     public void onDetach() {
         super.onDetach();
+
+        if (hasNicknameSubscription != null) {
+            hasNicknameSubscription.unsubscribe();
+        }
 
         if (sortByDateDescSubscription != null) {
             sortByDateDescSubscription.unsubscribe();

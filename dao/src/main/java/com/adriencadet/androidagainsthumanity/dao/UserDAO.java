@@ -16,6 +16,11 @@ class UserDAO implements IUserDAO {
     }
 
     @Override
+    public boolean hasNickname() {
+        return getNickname() != null;
+    }
+
+    @Override
     public String getNickname() {
         return sharedPreferences.getString(NICKNAME_KEY, null);
     }

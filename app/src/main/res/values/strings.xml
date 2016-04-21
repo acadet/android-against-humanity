@@ -10,7 +10,7 @@
 
     <string name="modal_nickname_title">Enter your nickname</string>
     <string name="modal_save">Save</string>
-    <string name="modal_nickname_random">I don't have time for this</string>
+    <string name="modal_nickname_random">I don\'t have time for this</string>
     <string name="modal_nickname_confirmation">Your nickname is %1$s</string>
 
 </resources>

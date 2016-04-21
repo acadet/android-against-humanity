@@ -12,4 +12,6 @@ public interface IUserBLL {
     Observable<String> generateNickname();
 
     Observable<Void> saveNickname(String nickname);
+
+    Observable<Boolean> hasNickname();
 }
