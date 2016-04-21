@@ -28,7 +28,6 @@ import rx.subjects.Subject;
 class JoinConversationJob {
     private static final Object observableLock = new Object();
 
-    private boolean                                hasSubscribedToBus;
     private Map<String, Subject<Message, Message>> subjects;
     private Context                                context;
     private ISocketServerAPI                       api;
@@ -39,7 +38,8 @@ class JoinConversationJob {
         this.api = api;
         this.messageMapper = messageMapper;
         this.subjects = new HashMap<>();
-        this.hasSubscribedToBus = false;
+
+        SocketListenerService.subscribe(this);
     }
 
     Observable<Message> create(String slug) {
@@ -49,11 +49,6 @@ class JoinConversationJob {
                     Subject<Message, Message> subject = PublishSubject.create();
 
                     subjects.put(slug, subject);
-
-                    if (!hasSubscribedToBus) {
-                        hasSubscribedToBus = true;
-                        SocketListenerService.subscribe(this);
-                    }
 
                     Observable
                         .create(new Observable.OnSubscribe<Void>() {

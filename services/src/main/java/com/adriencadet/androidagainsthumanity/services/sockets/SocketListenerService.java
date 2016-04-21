@@ -5,17 +5,17 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.adriencadet.androidagainsthumanity.services.BuildConfig;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.EventBusBuilder;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import timber.log.Timber;
 
 /**
  * SocketListenerService
@@ -28,24 +28,13 @@ public class SocketListenerService extends Service {
 
     private static SocketListenerService instance;
     private        Map<String, Socket>   sockets;
-    private        EventBus              socketEventBus;
+    private static EventBus socketEventBus = EventBus.builder().installDefaultEventBus();
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         instance = this;
-
         sockets = new HashMap<>();
-        EventBusBuilder builder = EventBus
-            .builder()
-            .logNoSubscriberMessages(false)
-            .sendNoSubscriberEvent(false);
-
-        if (BuildConfig.DEBUG) {
-            builder.throwSubscriberException(true);
-        }
-        socketEventBus = builder.build();
     }
 
     @Override
@@ -88,10 +77,18 @@ public class SocketListenerService extends Service {
     }
 
     public static void subscribe(Object subscriber) {
-        instance.socketEventBus.register(subscriber);
+        socketEventBus.register(subscriber);
     }
 
     public static void pushMessage(MessageEvent event) {
-        instance.sockets.get(event.slug).emit(MESSAGE_EVENT, event.data);
+        if (instance == null) {
+            Timber.e("The service has not been initialized yet");
+        } else {
+            if (instance.sockets.containsKey(event.slug)) {
+                instance.sockets.get(event.slug).emit(MESSAGE_EVENT, event.data);
+            } else {
+                Timber.e("The requested socket has not been opened yet");
+            }
+        }
     }
 }

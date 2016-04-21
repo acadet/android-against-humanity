@@ -20,8 +20,8 @@ import dagger.Provides;
 public class BLLFactory {
     @Provides
     @Singleton
-    CreateConversationJob provideCreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO) {
-        return new CreateConversationJob(socketService, conversationDAO);
+    CreateConversationJob provideCreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO, IUserDAO userDAO) {
+        return new CreateConversationJob(socketService, conversationDAO, userDAO);
     }
 
     @Provides
@@ -32,8 +32,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, ISocketService socketService) {
-        return new JoinConversationJob(conversationDAO, messageDAO, socketService);
+    JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService) {
+        return new JoinConversationJob(conversationDAO, messageDAO, userDAO, socketService);
     }
 
     @Provides
