@@ -17,7 +17,7 @@ class UserDAO implements IUserDAO {
 
     @Override
     public boolean hasNickname() {
-        return getNickname() != null;
+        return getNickname() != null && !getNickname().trim().isEmpty();
     }
 
     @Override

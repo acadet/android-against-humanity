@@ -2,7 +2,6 @@ package com.adriencadet.androidagainsthumanity.ui.routers;
 
 import com.adriencadet.androidagainsthumanity.ui.screens.modal.ConfirmScreen;
 import com.adriencadet.androidagainsthumanity.ui.screens.modal.InitModalScreen;
-import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 import com.lyft.scoop.Screen;
 import com.lyft.scoop.ScreenScooper;
 
@@ -26,8 +25,7 @@ public class ModalRouter extends BaseRouter {
 
     @Override
     public boolean hasActiveScreen() {
-        if (current instanceof InitModalScreen || current instanceof ConfirmScreen
-            || current instanceof NicknameModalScreen) {
+        if (current instanceof InitModalScreen || current instanceof ConfirmScreen) {
             return false;
         }
 

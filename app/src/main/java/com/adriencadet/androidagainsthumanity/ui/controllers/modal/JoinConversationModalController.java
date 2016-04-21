@@ -4,9 +4,11 @@ import android.widget.EditText;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
+import com.adriencadet.androidagainsthumanity.bll.BLLErrors;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.JoinConversationScreen;
 import com.adriencadet.androidagainsthumanity.ui.screens.modal.InitModalScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -58,6 +60,15 @@ public class JoinConversationModalController extends BaseController {
                 @Override
                 public void onCompleted() {
 
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    if (e instanceof BLLErrors.NoNickname) {
+                        modalRouter.goTo(new NicknameModalScreen());
+                    } else {
+                        super.onError(e);
+                    }
                 }
 
                 @Override

@@ -2,6 +2,7 @@ package com.adriencadet.androidagainsthumanity.bll;
 
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.dao.IConversationDAO;
+import com.adriencadet.androidagainsthumanity.dao.IUserDAO;
 import com.adriencadet.androidagainsthumanity.services.sockets.ISocketService;
 
 import rx.Observable;
@@ -15,10 +16,12 @@ import rx.schedulers.Schedulers;
 class CreateConversationJob {
     private ISocketService   socketService;
     private IConversationDAO conversationDAO;
+    private IUserDAO         userDAO;
 
-    CreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO) {
+    CreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO, IUserDAO userDAO) {
         this.socketService = socketService;
         this.conversationDAO = conversationDAO;
+        this.userDAO = userDAO;
     }
 
     Observable<Conversation> create() {
@@ -26,6 +29,11 @@ class CreateConversationJob {
             .create(new Observable.OnSubscribe<Conversation>() {
                 @Override
                 public void call(Subscriber<? super Conversation> subscriber) {
+                    if (!userDAO.hasNickname()) {
+                        subscriber.onError(new BLLErrors.NoNickname());
+                        return;
+                    }
+
                     socketService
                         .createConversation()
                         .observeOn(Schedulers.newThread())
@@ -45,6 +53,7 @@ class CreateConversationJob {
                                 subscriber.onNext(conversationDAO.save(s));
                             }
                         });
+
                 }
             })
             .subscribeOn(Schedulers.newThread());

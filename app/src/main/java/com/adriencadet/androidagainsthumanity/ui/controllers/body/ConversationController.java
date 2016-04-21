@@ -6,9 +6,11 @@ import android.widget.TextView;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Message;
+import com.adriencadet.androidagainsthumanity.bll.BLLErrors;
 import com.adriencadet.androidagainsthumanity.ui.adapters.MessageListAdapter;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.JoinConversationScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.modal.NicknameModalScreen;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.lyft.scoop.Screen;
@@ -102,6 +104,15 @@ public class ConversationController extends BaseController {
                 @Override
                 public void onCompleted() {
 
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    if (e instanceof BLLErrors.NoNickname) {
+                        modalRouter.goTo(new NicknameModalScreen());
+                    } else {
+                        super.onError(e);
+                    }
                 }
 
                 @Override

@@ -4,6 +4,7 @@ import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.beans.Message;
 import com.adriencadet.androidagainsthumanity.dao.IConversationDAO;
 import com.adriencadet.androidagainsthumanity.dao.IMessageDAO;
+import com.adriencadet.androidagainsthumanity.dao.IUserDAO;
 import com.adriencadet.androidagainsthumanity.services.sockets.ISocketService;
 
 import rx.Observable;
@@ -18,11 +19,13 @@ class JoinConversationJob {
 
     private IConversationDAO conversationDAO;
     private IMessageDAO      messageDAO;
+    private IUserDAO         userDAO;
     private ISocketService   socketService;
 
-    JoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, ISocketService socketService) {
+    JoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService) {
         this.conversationDAO = conversationDAO;
         this.messageDAO = messageDAO;
+        this.userDAO = userDAO;
         this.socketService = socketService;
     }
 
@@ -32,7 +35,14 @@ class JoinConversationJob {
                 .create(new Observable.OnSubscribe<Message>() {
                     @Override
                     public void call(Subscriber<? super Message> subscriber) {
-                        Conversation conversation = conversationDAO.save(slug);
+                        Conversation conversation;
+
+                        if (!userDAO.hasNickname()) {
+                            subscriber.onError(new BLLErrors.NoNickname());
+                            return;
+                        }
+
+                        conversation = conversationDAO.save(slug);
 
                         socketService
                             .joinConversation(slug)
