@@ -55,16 +55,20 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
 
     @Override
     public Conversation save(String slug) {
-        ConversationDTO conversation = new ConversationDTO();
+        ConversationDTO conversation;
         Realm dal = getRealmInstance();
         Conversation outcome;
 
-        conversation.setId(UUID.randomUUID().toString());
-        conversation.setSlug(slug);
+        conversation = dal.where(ConversationDTO.class).equalTo("slug", slug).findFirst();
+        if (conversation == null) {
+            conversation = new ConversationDTO();
+            conversation.setId(UUID.randomUUID().toString());
+            conversation.setSlug(slug);
 
-        dal.beginTransaction();
-        dal.copyToRealm(conversation);
-        dal.commitTransaction();
+            dal.beginTransaction();
+            dal.copyToRealm(conversation);
+            dal.commitTransaction();
+        }
 
         outcome = conversationMapper.map(conversation);
         dal.close();
