@@ -3,6 +3,7 @@ package com.adriencadet.androidagainsthumanity.ui.controllers.modal;
 import android.widget.EditText;
 
 import com.adriencadet.androidagainsthumanity.R;
+import com.adriencadet.androidagainsthumanity.bll.BLLErrors;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
 import com.adriencadet.androidagainsthumanity.ui.screens.modal.ConfirmScreen;
 
@@ -84,6 +85,15 @@ public class NicknameModalController extends BaseController {
                 @Override
                 public void onCompleted() {
                     confirmNickname(nickname);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    if (e instanceof BLLErrors.InvalidNickname) {
+                        // TODO: alert user
+                    } else {
+                        super.onError(e);
+                    }
                 }
 
                 @Override

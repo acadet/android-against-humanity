@@ -22,8 +22,14 @@ class SaveUserNicknameJob {
             .create(new Observable.OnSubscribe<Void>() {
                 @Override
                 public void call(Subscriber<? super Void> subscriber) {
-                    // TODO: check if not empty
-                    userDAO.saveNickname(nickname);
+                    String value = nickname.trim();
+
+                    if (value.isEmpty()) {
+                        subscriber.onError(new BLLErrors.InvalidNickname());
+                        return;
+                    }
+
+                    userDAO.saveNickname(value);
                     subscriber.onCompleted();
                 }
             })
