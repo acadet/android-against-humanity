@@ -11,4 +11,9 @@
         <item name="android:stackFromBottom">true</item>
         <item name="android:transcriptMode">alwaysScroll</item>
     </style>
+
+    <style name="ConversationNoMessageLabel" parent="WrapContent">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/display1</item>
+    </style>
 </resources>

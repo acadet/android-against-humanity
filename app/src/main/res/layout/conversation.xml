@@ -17,7 +17,7 @@
         android:layout_centerInParent="true"
         android:text="@string/conversation_no_message"
         android:visibility="gone"
-        style="@style/WrapContent"
+        style="@style/ConversationNoMessageLabel"
         tools:visibility="visible"
         />
 
