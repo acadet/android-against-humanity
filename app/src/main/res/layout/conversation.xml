@@ -7,6 +7,7 @@
 
     <ListView
         android:id="@+id/conversation_listview"
+        android:animateLayoutChanges="true"
         android:visibility="gone"
         style="@style/MatchParent"
         tools:visibility="visible"
