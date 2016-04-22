@@ -32,11 +32,11 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
     @Override
     public List<Conversation> sortByDateDesc() {
         Realm dal = getRealmInstance();
-        Map<String, Conversation> conversations = new HashMap<>();
+        Map<String, ConversationDTO> conversations = new HashMap<>();
         List<Conversation> outcome = new ArrayList<>();
 
         Stream
-            .of(conversationMapper.map(dal.allObjects(ConversationDTO.class)))
+            .of(dal.allObjects(ConversationDTO.class))
             .forEach((e) -> conversations.put(e.getId(), e));
 
         Stream
@@ -47,10 +47,14 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
             ))
             .forEach((m) -> {
                 if (conversations.containsKey(m.getConversationId())) {
-                    outcome.add(conversations.get(m.getConversationId()));
+                    outcome.add(conversationMapper.map(conversations.get(m.getConversationId())));
                     conversations.remove(m.getConversationId());
                 }
             });
+
+        dal.beginTransaction();
+        Stream.of(conversations).forEach((entry) -> entry.getValue().removeFromRealm());
+        dal.commitTransaction();
 
         dal.close();
 
