@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AdapterConversationList" parent="MatchParentWrapContent">
+        <item name="android:padding">@dimen/layout_margin</item>
+
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="AdapterConversationListSlug" parent="HorizontalStretchable">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/headline</item>
+    </style>
+
+    <style name="AdapterConversationListIcon" parent="WrapContent">
+        <item name="android:layout_marginLeft">@dimen/vertical_layout_margin</item>
+    </style>
+</resources>

@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/conversation_list_listview"
         android:visibility="gone"
-        style="@style/MatchParent"
+        style="@style/ConversationListListView"
         tools:visibility="visible"
         />
 
@@ -17,7 +17,7 @@
         android:layout_centerInParent="true"
         android:text="@string/conversation_list_no_content"
         android:visibility="gone"
-        style="@style/WrapContent"
+        style="@style/ConversationListNoContentLabel"
         tools:visibility="visible"
         />
 

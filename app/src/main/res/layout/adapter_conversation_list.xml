@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    style="@style/WrapContent.Vertical"
+    android:orientation="horizontal"
+    style="@style/AdapterConversationList"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
     <TextView
         android:id="@+id/adapter_conversation_list_slug"
-        android:textColor="@color/colorPrimary"
-        style="@style/WrapContent"
+        android:layout_gravity="center"
+        style="@style/AdapterConversationListSlug"
         tools:text="My Conversation"
+        />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@drawable/ic_arrow_right"
+        style="@style/AdapterConversationListIcon"
         />
 
 </LinearLayout>

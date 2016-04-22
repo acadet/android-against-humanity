@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ConversationListListView" parent="MatchParent">
+        <item name="android:background">@color/gray</item>
+        <item name="android:dividerHeight">2dp</item>
+        <item name="android:divider">@color/light_gray</item>
+    </style>
+
+    <style name="ConversationListNoContentLabel" parent="WrapContent">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/display1</item>
+    </style>
+</resources>
