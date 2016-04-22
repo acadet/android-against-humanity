@@ -44,8 +44,18 @@ public class MainRouter extends BaseRouter {
             bodyRouter.goTo(screen);
             floatingButtonRouter.goTo(new ConversationListFABScreen());
         } else if (screen instanceof JoinConversationScreen) {
+            JoinConversationScreen s1 = (JoinConversationScreen) screen;
+            ConversationFABScreen s2;
+
+            if (s1.hasConversation()) {
+                s2 = new ConversationFABScreen(s1.conversation);
+            } else {
+                s2 = new ConversationFABScreen(s1.slug);
+            }
+
             bodyRouter.goTo(screen);
-            floatingButtonRouter.goTo(new ConversationFABScreen(((JoinConversationScreen) screen).conversation));
+            floatingButtonRouter.goTo(s2);
+
         } else if (screen instanceof ConversationListExtendedScreen || screen instanceof ConversationExtendedScreen) {
             isFABActive = true;
             floatingButtonRouter.goTo(screen);
