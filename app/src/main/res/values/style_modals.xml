@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Modal" parent="MatchParent">
+        <item name="android:padding">@dimen/layout_margin</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="ModalButton" parent="WrapContent">
+        <item name="android:padding">@dimen/layout_margin</item>
+        <item name="android:layout_margin">10dp</item>
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/button</item>
+
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="ModalTitle" parent="WrapContent">
+        <item name="android:padding">10dp</item>
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/title</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="ModalEditText">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:padding">10dp</item>
+
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textAlignment">center</item>
+
+        <item name="android:background">@drawable/edittext_background</item>
+    </style>
+</resources>

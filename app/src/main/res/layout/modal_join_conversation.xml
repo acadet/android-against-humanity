@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:background="@color/colorPrimary"
-    style="@style/MatchParent"
+<RelativeLayout
+    style="@style/Modal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
     <LinearLayout
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         style="@style/WrapContent.Vertical"
         >
 
         <TextView
-            android:text="@string/modal_join_conversation_hint"
-            style="@style/WrapContent"
+            android:text="@string/modal_join_conversation_title"
+            style="@style/ModalTitle"
             />
 
         <EditText
             android:id="@+id/modal_join_conversation_edittext"
-            style="@style/WrapContent"
-            />
-
-        <Button
-            android:id="@+id/modal_join_conversation_create"
-            android:text="@string/modal_join_conversation_create"
-            style="@style/WrapContent"
+            android:hint="@string/modal_join_conversation_hint"
+            style="@style/ModalEditText"
             />
 
         <Button
             android:id="@+id/modal_join_conversation_join"
             android:text="@string/modal_join_conversation_join"
-            style="@style/WrapContent"
+            style="@style/ModalButton"
             />
 
     </LinearLayout>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/modal_join_conversation_create"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/modal_join_conversation_create"
+        style="@style/ModalButton"
+        />
+
+</RelativeLayout>

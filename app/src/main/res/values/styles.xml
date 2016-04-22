@@ -6,7 +6,6 @@
 
     <style name="ProgressBar" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
     </style>
-
     <!-- Default styles -->
 
     <style name="MatchParentWrapContent">

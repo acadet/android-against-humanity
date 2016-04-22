@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:background="@color/colorPrimary"
-    style="@style/MatchParent"
+<RelativeLayout
+    style="@style/Modal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
     <LinearLayout
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         style="@style/WrapContent.Vertical"
         >
 
         <TextView
             android:text="@string/modal_nickname_title"
-            style="@style/WrapContent"
+            style="@style/ModalTitle"
             />
 
         <EditText
             android:id="@+id/modal_nickname_edittext"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:hint="@string/modal_nickname_hint"
+            style="@style/ModalEditText"
             />
 
         <Button
             android:id="@+id/modal_nickname_submit"
             android:text="@string/modal_save"
-            style="@style/WrapContent"
-            />
-
-        <Button
-            android:id="@+id/modal_nickname_random"
-            android:text="@string/modal_nickname_random"
-            style="@style/WrapContent"
+            style="@style/ModalButton"
             />
 
     </LinearLayout>
 
-</FrameLayout>
+
+    <Button
+        android:id="@+id/modal_nickname_random"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/modal_nickname_random"
+        style="@style/ModalButton"
+        />
+
+</RelativeLayout>

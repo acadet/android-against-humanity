@@ -8,14 +8,16 @@
 
     <string name="conversation_no_message">Be the first to post!</string>
 
-    <string name="modal_nickname_title">Enter your nickname</string>
+    <string name="modal_nickname_title">Enter your nickname:</string>
+    <string name="modal_nickname_hint">The man</string>
     <string name="modal_save">Save</string>
-    <string name="modal_nickname_random">I don\'t have time for this</string>
+    <string name="modal_nickname_random">No time for this shit</string>
     <string name="modal_nickname_confirmation">Your nickname is %1$s</string>
 
-    <string name="modal_join_conversation_hint">Type the name of the conversation you would like to join</string>
+    <string name="modal_join_conversation_title">Type the name of the crew you wanna join:</string>
+    <string name="modal_join_conversation_hint">Oh boy.</string>
     <string name="modal_join_conversation_join">Join</string>
-    <string name="modal_join_conversation_create">Create a new one</string>
+    <string name="modal_join_conversation_create">Let\'s start a new war</string>
 
     <string name="from_who">From %1$s</string>
 </resources>
