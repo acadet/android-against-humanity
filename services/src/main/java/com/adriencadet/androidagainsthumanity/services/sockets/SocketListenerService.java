@@ -48,6 +48,8 @@ public class SocketListenerService extends Service {
                 sockets.put(slug, socket);
 
                 socket.on(MESSAGE_EVENT, (args) -> socketEventBus.post(new MessageEvent(slug, (JSONObject) args[0])));
+
+                socket.connect();
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
