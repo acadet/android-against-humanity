@@ -32,6 +32,12 @@ public class BLLFactory {
 
     @Provides
     @Singleton
+    GenerateUserNicknameJob provideGenerateUserNicknameJob(Context context, IUserDAO userDAO) {
+        return new GenerateUserNicknameJob(context, userDAO);
+    }
+
+    @Provides
+    @Singleton
     JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService, PostMessageJob postMessageJob) {
         return new JoinConversationJob(conversationDAO, messageDAO, userDAO, socketService, postMessageJob);
     }
@@ -81,8 +87,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    IUserBLL provideUserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
-        return new UserBLL(getUserNicknameJob, saveUserNicknameJob, hasUserNicknameJob);
+    IUserBLL provideUserBLL(GetUserNicknameJob getUserNicknameJob, GenerateUserNicknameJob generateUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
+        return new UserBLL(getUserNicknameJob, generateUserNicknameJob, saveUserNicknameJob, hasUserNicknameJob);
     }
 
     @Provides

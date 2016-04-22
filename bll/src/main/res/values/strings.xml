@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">bll</string>
 
+    <string-array name="nicknames">
+        <item>El Niño</item>
+        <item>Noodlehead</item>
+        <item>I am Jake Wharton</item>
+        <item>Jake Wharton</item>
+        <item>My name is Jon Skeet, motherf*ckers</item>
+        <item>I am the man</item>
+    </string-array>
+
     <string-array name="prefixes">
         <item>What are my parents hiding from me?</item>
         <item>What will always get you laid?</item>

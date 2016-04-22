@@ -8,11 +8,13 @@ import rx.Observable;
  */
 class UserBLL implements IUserBLL {
     private GetUserNicknameJob  getUserNicknameJob;
+    private GenerateUserNicknameJob generateUserNicknameJob;
     private SaveUserNicknameJob saveUserNicknameJob;
     private HasUserNicknameJob  hasUserNicknameJob;
 
-    UserBLL(GetUserNicknameJob getUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
+    UserBLL(GetUserNicknameJob getUserNicknameJob, GenerateUserNicknameJob generateUserNicknameJob, SaveUserNicknameJob saveUserNicknameJob, HasUserNicknameJob hasUserNicknameJob) {
         this.getUserNicknameJob = getUserNicknameJob;
+        this.generateUserNicknameJob = generateUserNicknameJob;
         this.saveUserNicknameJob = saveUserNicknameJob;
         this.hasUserNicknameJob = hasUserNicknameJob;
     }
@@ -24,8 +26,7 @@ class UserBLL implements IUserBLL {
 
     @Override
     public Observable<String> generateNickname() {
-        //TODO later
-        return null;
+        return generateUserNicknameJob.create();
     }
 
     @Override
