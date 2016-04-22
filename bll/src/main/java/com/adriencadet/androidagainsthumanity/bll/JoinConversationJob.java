@@ -109,7 +109,7 @@ class JoinConversationJob {
                     Conversation conversation = conversationDAO.findBySlug(slug);
 
                     if (conversation == null) {
-                        conversationDAO.save(slug);
+                        conversation = conversationDAO.save(slug);
                     }
 
                     create(conversation)
