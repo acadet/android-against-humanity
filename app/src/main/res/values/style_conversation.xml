@@ -2,15 +2,13 @@
 <resources>
 
     <style name="ConversationListView" parent="MatchParent">
-        <item name="android:paddingTop">@dimen/layout_margin</item>
-        <item name="android:paddingRight">@dimen/layout_margin</item>
-        <item name="android:paddingBottom">64dp</item>
-        <item name="android:paddingLeft">@dimen/layout_margin</item>
+        <item name="android:padding">@dimen/layout_margin</item>
 
         <item name="android:background">@color/light_gray</item>
         <item name="android:divider">@android:color/transparent</item>
         <item name="android:dividerHeight">@dimen/layout_margin</item>
         <item name="android:animateLayoutChanges">true</item>
         <item name="android:stackFromBottom">true</item>
+        <item name="android:transcriptMode">alwaysScroll</item>
     </style>
 </resources>

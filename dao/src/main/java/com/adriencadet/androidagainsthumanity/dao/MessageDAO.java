@@ -28,6 +28,7 @@ class MessageDAO extends BaseDAO implements IMessageDAO {
 
     @Override
     public List<Message> sortByDateAsc(Conversation conversation) {
+        //TODO: close realm
         return messageMapper
             .map(
                 getRealmInstance()
