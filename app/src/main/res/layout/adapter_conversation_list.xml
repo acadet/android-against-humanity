@@ -6,12 +6,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <TextView
-        android:id="@+id/adapter_conversation_list_slug"
-        android:layout_gravity="center"
-        style="@style/AdapterConversationListSlug"
-        tools:text="My Conversation"
-        />
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/HorizontalStretchable"
+        >
+
+        <TextView
+            android:id="@+id/adapter_conversation_list_slug"
+            style="@style/AdapterConversationListSlug"
+            tools:text="My Conversation"
+            />
+
+        <TextView
+            android:id="@+id/adapter_conversation_list_updated_at"
+            style="@style/AdapterConversationListUpdatedAt"
+            tools:text="45 minutes ago"
+            />
+
+    </LinearLayout>
 
     <ImageView
         android:layout_gravity="center"

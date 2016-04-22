@@ -1,16 +1,14 @@
 package com.adriencadet.androidagainsthumanity.ui.adapters;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Message;
+import com.adriencadet.androidagainsthumanity.ui.helpers.DateFormatterHelper;
 import com.annimon.stream.Stream;
-
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,14 +61,7 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         }
 
         holder.content.setText(item.getContent());
-        holder.postedAt.setText(
-            DateUtils
-                .getRelativeTimeSpanString(
-                    item.getPostedAt().toDate().getTime(),
-                    DateTime.now().toDate().getTime(),
-                    DateUtils.SECOND_IN_MILLIS
-                )
-        );
+        holder.postedAt.setText(DateFormatterHelper.timeAgo(item.getPostedAt()));
 
         if (item.isMine()) {
             holder.poster.setText(getContext().getString(R.string.from_me));

@@ -7,9 +7,16 @@
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="AdapterConversationListSlug" parent="HorizontalStretchable">
+    <style name="AdapterConversationListSlug" parent="MatchParentWrapContent">
+        <item name="android:layout_marginBottom">5dp</item>
+
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">@dimen/headline</item>
+    </style>
+
+    <style name="AdapterConversationListUpdatedAt" parent="MatchParentWrapContent">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">@dimen/body</item>
     </style>
 
     <style name="AdapterConversationListIcon" parent="WrapContent">

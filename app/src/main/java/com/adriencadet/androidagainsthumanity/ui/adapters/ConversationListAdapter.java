@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.adriencadet.androidagainsthumanity.AndroidAgainstHumanityApplication;
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
+import com.adriencadet.androidagainsthumanity.ui.helpers.DateFormatterHelper;
 import com.adriencadet.androidagainsthumanity.ui.routers.IRouter;
 import com.adriencadet.androidagainsthumanity.ui.screens.JoinConversationScreen;
 
@@ -31,7 +32,10 @@ public class ConversationListAdapter extends BaseAdapter<Conversation> {
 
     class ViewHolder {
         @Bind(R.id.adapter_conversation_list_slug)
-        TextView slugView;
+        TextView slug;
+
+        @Bind(R.id.adapter_conversation_list_updated_at)
+        TextView updatedAt;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
@@ -59,7 +63,10 @@ public class ConversationListAdapter extends BaseAdapter<Conversation> {
             view.setTag(holder);
         }
 
-        holder.slugView.setText(item.getSlug());
+        holder.slug.setText(item.getSlug());
+        if (item.getUpdatedAt().isPresent()) {
+            holder.updatedAt.setText(DateFormatterHelper.timeAgo(item.getUpdatedAt().get()));
+        }
 
         view.setOnClickListener((v) -> {
             mainRouter.goTo(new JoinConversationScreen(item));

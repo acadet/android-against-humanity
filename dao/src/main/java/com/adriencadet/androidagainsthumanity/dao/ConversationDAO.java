@@ -1,7 +1,10 @@
 package com.adriencadet.androidagainsthumanity.dao;
 
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
+import com.adriencadet.androidagainsthumanity.beans.utils.Optional;
 import com.annimon.stream.Stream;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +50,9 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
             ))
             .forEach((m) -> {
                 if (conversations.containsKey(m.getConversationId())) {
-                    outcome.add(conversationMapper.map(conversations.get(m.getConversationId())));
+                    Conversation c = conversationMapper.map(conversations.get(m.getConversationId()));
+                    c.setUpdatedAt(new Optional<>(new DateTime(m.getPostedAt())));
+                    outcome.add(c);
                     conversations.remove(m.getConversationId());
                 }
             });
