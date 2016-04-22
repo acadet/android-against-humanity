@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     style="@style/AdapterMessageList"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <TextView
-        android:id="@+id/adapter_message_list_content"
-        style="@style/AdapterMessageListContent"
-        tools:text="Content of message"
-        />
-
     <LinearLayout
-        android:gravity="center"
-        style="@style/MatchParentWrapContent.Horizontal"
-        >
+        style="@style/AdapterMessageListInnerWrapper">
 
         <TextView
-            android:id="@+id/adapter_message_list_poster"
-            android:layout_marginRight="5dp"
-            style="@style/AdapterMessageListLabel"
-            tools:text="@string/from_who"
+            android:id="@+id/adapter_message_list_content"
+            style="@style/AdapterMessageListContent"
+            tools:text="Content of message"
             />
 
-        <TextView
-            android:id="@+id/adapter_message_list_posted_at"
-            android:textAlignment="textEnd"
-            style="@style/AdapterMessageListLabel"
-            tools:text="47 minutes ago"
-            />
+        <LinearLayout
+            android:gravity="center"
+            style="@style/MatchParentWrapContent.Horizontal"
+            >
+
+            <TextView
+                android:id="@+id/adapter_message_list_poster"
+                android:layout_marginRight="5dp"
+                style="@style/AdapterMessageListLabel"
+                tools:text="@string/from_who"
+                />
+
+            <TextView
+                android:id="@+id/adapter_message_list_posted_at"
+                android:textAlignment="textEnd"
+                style="@style/AdapterMessageListLabel"
+                tools:text="47 minutes ago"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
