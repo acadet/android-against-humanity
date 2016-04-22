@@ -93,6 +93,7 @@ public class ConversationController extends BaseController {
         }
 
         messageListAdapter = new MessageListAdapter(context);
+        listView.setAdapter(messageListAdapter);
 
         sortByDateAscSubscription = sortByDateAscObservable
             .observeOn(AndroidSchedulers.mainThread())
@@ -142,6 +143,10 @@ public class ConversationController extends BaseController {
                 @Override
                 public void onNext(Message message) {
                     messageListAdapter.add(message);
+                    if (listView.getVisibility() == View.GONE) {
+                        show(listView);
+                        hide(noContentLabelView);
+                    }
                 }
             });
     }

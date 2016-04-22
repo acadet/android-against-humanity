@@ -20,7 +20,7 @@ public interface IMessageBLL {
 
     Observable<List<Message>> sortByDateAsc(String slug);
 
-    Observable<Void> post(Conversation conversation, String prefix, String suffix);
+    void post(Conversation conversation, String prefix, String suffix);
 
-    Observable<Void> post(String slug, String prefix, String suffix);
+    void post(String slug, String prefix, String suffix);
 }

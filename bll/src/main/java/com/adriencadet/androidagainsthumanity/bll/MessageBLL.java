@@ -16,13 +16,12 @@ import rx.Observable;
 class MessageBLL implements IMessageBLL {
     private ListMessageSuggestionsJob listMessageSuggestionsJob;
     private SortMessagesByDateAsc     sortMessagesByDateAsc;
-    private PostMessageJob            postMessageJob;
+    private JoinConversationJob       joinConversationJob;
 
-    MessageBLL(ListMessageSuggestionsJob listMessageSuggestionsJob, SortMessagesByDateAsc sortMessagesByDateAsc,
-               PostMessageJob postMessageJob) {
+    MessageBLL(ListMessageSuggestionsJob listMessageSuggestionsJob, SortMessagesByDateAsc sortMessagesByDateAsc, JoinConversationJob joinConversationJob) {
         this.listMessageSuggestionsJob = listMessageSuggestionsJob;
         this.sortMessagesByDateAsc = sortMessagesByDateAsc;
-        this.postMessageJob = postMessageJob;
+        this.joinConversationJob = joinConversationJob;
     }
 
     @Override
@@ -41,12 +40,12 @@ class MessageBLL implements IMessageBLL {
     }
 
     @Override
-    public Observable<Void> post(Conversation conversation, String prefix, String suffix) {
-        return postMessageJob.create(conversation, prefix + " " + suffix);
+    public void post(Conversation conversation, String prefix, String suffix) {
+        joinConversationJob.postMessage(conversation, prefix + " " + suffix);
     }
 
     @Override
-    public Observable<Void> post(String slug, String prefix, String suffix) {
-        return postMessageJob.create(slug, prefix + " " + suffix);
+    public void post(String slug, String prefix, String suffix) {
+        joinConversationJob.postMessage(slug, prefix + " " + suffix);
     }
 }

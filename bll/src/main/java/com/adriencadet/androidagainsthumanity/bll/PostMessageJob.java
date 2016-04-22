@@ -28,11 +28,11 @@ class PostMessageJob {
         this.userDAO = userDAO;
     }
 
-    Observable<Void> create(Conversation conversation, String content) {
+    Observable<Message> create(Conversation conversation, String content) {
         return Observable
-            .create(new Observable.OnSubscribe<Void>() {
+            .create(new Observable.OnSubscribe<Message>() {
                 @Override
-                public void call(Subscriber<? super Void> subscriber) {
+                public void call(Subscriber<? super Message> subscriber) {
                     Message message = messageDAO.saveOutgoing(conversation, content);
 
                     message.setPosterNickname(userDAO.getNickname());
@@ -43,6 +43,7 @@ class PostMessageJob {
                         .subscribe(new Subscriber<Void>() {
                             @Override
                             public void onCompleted() {
+                                subscriber.onNext(message);
                                 subscriber.onCompleted();
                             }
 
@@ -61,11 +62,11 @@ class PostMessageJob {
             .subscribeOn(Schedulers.newThread());
     }
 
-    Observable<Void> create(String slug, String content) {
+    Observable<Message> create(String slug, String content) {
         return Observable
-            .create(new Observable.OnSubscribe<Void>() {
+            .create(new Observable.OnSubscribe<Message>() {
                 @Override
-                public void call(Subscriber<? super Void> subscriber) {
+                public void call(Subscriber<? super Message> subscriber) {
                     Conversation conversation = conversationDAO.findBySlug(slug);
 
                     if (conversation == null) {
@@ -74,7 +75,22 @@ class PostMessageJob {
 
                     create(conversation, content)
                         .observeOn(Schedulers.newThread())
-                        .subscribe(subscriber);
+                        .subscribe(new Subscriber<Message>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(Message message) {
+                                subscriber.onNext(message);
+                            }
+                        });
                 }
             })
             .subscribeOn(Schedulers.newThread());

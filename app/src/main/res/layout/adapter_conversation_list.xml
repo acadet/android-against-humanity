@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/adapter_conversation_list_slug"
+        android:textColor="@color/colorPrimary"
         style="@style/WrapContent"
         tools:text="My Conversation"
         />

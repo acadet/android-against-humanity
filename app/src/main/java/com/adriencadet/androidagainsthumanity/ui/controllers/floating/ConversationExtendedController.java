@@ -64,6 +64,7 @@ public class ConversationExtendedController extends BaseController {
                                     } else {
                                         messageBLL.post(screen.slug, prefix, suffix);
                                     }
+                                    mainRouter.goBack();
                                 });
                             }
                         });

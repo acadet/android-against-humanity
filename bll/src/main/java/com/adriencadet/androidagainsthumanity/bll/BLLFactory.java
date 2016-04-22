@@ -32,8 +32,8 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService) {
-        return new JoinConversationJob(conversationDAO, messageDAO, userDAO, socketService);
+    JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService, PostMessageJob postMessageJob) {
+        return new JoinConversationJob(conversationDAO, messageDAO, userDAO, socketService, postMessageJob);
     }
 
     @Provides
@@ -75,8 +75,8 @@ public class BLLFactory {
     @Provides
     @Singleton
     IMessageBLL provideMessageBLL(ListMessageSuggestionsJob listMessageSuggestionsJob, SortMessagesByDateAsc sortMessagesByDateAsc,
-                                  PostMessageJob postMessageJob) {
-        return new MessageBLL(listMessageSuggestionsJob, sortMessagesByDateAsc, postMessageJob);
+                                  JoinConversationJob joinConversationJob) {
+        return new MessageBLL(listMessageSuggestionsJob, sortMessagesByDateAsc, joinConversationJob);
     }
 
     @Provides

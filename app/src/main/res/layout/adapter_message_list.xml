@@ -7,18 +7,21 @@
 
     <TextView
         android:id="@+id/adapter_message_list_content"
+        android:textColor="@color/colorPrimary"
         style="@style/WrapContent"
         tools:text="Content of message"
         />
 
     <TextView
         android:id="@+id/adapter_message_list_poster"
+        android:textColor="@color/colorPrimary"
         style="@style/WrapContent"
         tools:text="@string/from_who"
         />
 
     <TextView
         android:id="@+id/adapter_message_list_posted_at"
+        android:textColor="@color/colorPrimary"
         style="@style/WrapContent"
         tools:text="47 minutes ago"
         />
