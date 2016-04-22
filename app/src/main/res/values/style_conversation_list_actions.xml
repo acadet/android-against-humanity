@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ConversationListActionsLabel" parent="FullHorizontalStretchable">
+        <item name="android:padding">@dimen/layout_margin</item>
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/subhead</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAlignment">center</item>
+
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+</resources>

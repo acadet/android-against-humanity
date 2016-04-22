@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    style="@style/MatchParentWrapContent.Horizontal"
+    style="@style/MatchParentWrapContent"
+    android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
     <TextView
         android:id="@+id/conversation_list_actions_create_join"
         android:text="@string/create_join_action"
-        style="@style/HorizontalStretchable"
+        style="@style/ConversationListActionsLabel"
         />
 
     <TextView
         android:id="@+id/conversation_list_actions_nickname"
         android:text="@string/nickname_action"
-        style="@style/HorizontalStretchable"
+        style="@style/ConversationListActionsLabel"
         />
 
 </LinearLayout>

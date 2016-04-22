@@ -11,7 +11,7 @@
     <com.adriencadet.androidagainsthumanity.ui.containers.FloatingButtonContainer
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        style="@style/WrapContent"
+        style="@style/MatchParentWrapContent"
         />
 
 </RelativeLayout>
