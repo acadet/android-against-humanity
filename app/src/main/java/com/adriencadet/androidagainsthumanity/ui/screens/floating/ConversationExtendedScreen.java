@@ -10,8 +10,6 @@ import com.lyft.scoop.Screen;
  * <p>
  */
 @Controller(ConversationExtendedController.class)
-//@EnterTransition(FABTransition.class)
-//@ExitTransition(FABTransition.class)
 public class ConversationExtendedScreen extends Screen {
     public Conversation conversation;
     public String       slug;

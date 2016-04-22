@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    style="@style/MatchParentWrapContent.Vertical"
+    android:orientation="vertical"
+    style="@style/ConversationActions"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <TextView
-        android:id="@+id/conversation_actions_suggestion_1"
-        style="@style/WrapContent"
-        tools:text="My suggestion"
-        />
+    <LinearLayout
+        style="@style/ConversationActionsBar"
+        >
 
-    <TextView
-        android:id="@+id/conversation_actions_suggestion_2"
-        style="@style/WrapContent"
-        tools:text="My suggestion"
-        />
+        <TextView
+            android:id="@+id/conversation_actions_suggestion_1"
+            style="@style/ConversationActionsLabel"
+            tools:text="My suggestion"
+            />
 
+        <TextView
+            android:id="@+id/conversation_actions_suggestion_2"
+            style="@style/ConversationActionsLabel"
+            tools:text="My suggestion"
+            />
 
-    <TextView
-        android:id="@+id/conversation_actions_suggestion_3"
-        style="@style/WrapContent"
-        tools:text="My suggestion"
-        />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/conversation_actions_suggestion_4"
-        style="@style/WrapContent"
-        tools:text="My suggestion"
-        />
+    <LinearLayout
+        style="@style/ConversationActionsBar"
+        >
+
+        <TextView
+            android:id="@+id/conversation_actions_suggestion_3"
+            style="@style/ConversationActionsLabel"
+            tools:text="My suggestion"
+            />
+
+        <TextView
+            android:id="@+id/conversation_actions_suggestion_4"
+            style="@style/ConversationActionsLabel"
+            tools:text="My suggestion"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

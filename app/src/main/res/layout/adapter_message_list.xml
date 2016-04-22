@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    style="@style/MatchParentWrapContent.Vertical"
+    style="@style/AdapterMessageList"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
     <TextView
         android:id="@+id/adapter_message_list_content"
-        android:textColor="@color/colorPrimary"
-        style="@style/WrapContent"
+        style="@style/AdapterMessageListContent"
         tools:text="Content of message"
         />
 
-    <TextView
-        android:id="@+id/adapter_message_list_poster"
-        android:textColor="@color/colorPrimary"
-        style="@style/WrapContent"
-        tools:text="@string/from_who"
-        />
+    <LinearLayout
+        android:gravity="center"
+        style="@style/MatchParentWrapContent.Horizontal"
+        >
 
-    <TextView
-        android:id="@+id/adapter_message_list_posted_at"
-        android:textColor="@color/colorPrimary"
-        style="@style/WrapContent"
-        tools:text="47 minutes ago"
-        />
+        <TextView
+            android:id="@+id/adapter_message_list_poster"
+            android:layout_marginRight="5dp"
+            style="@style/AdapterMessageListLabel"
+            tools:text="@string/from_who"
+            />
+
+        <TextView
+            android:id="@+id/adapter_message_list_posted_at"
+            android:textAlignment="textEnd"
+            style="@style/AdapterMessageListLabel"
+            tools:text="47 minutes ago"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

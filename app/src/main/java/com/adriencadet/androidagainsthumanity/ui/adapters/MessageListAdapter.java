@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.beans.Message;
+import com.annimon.stream.Stream;
 
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +34,11 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         @Bind(R.id.adapter_message_list_posted_at)
         TextView postedAt;
 
+        @Bind({ R.id.adapter_message_list_content,
+                R.id.adapter_message_list_poster,
+                R.id.adapter_message_list_posted_at })
+        List<TextView> labelsToColorize;
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
@@ -46,6 +53,7 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         View view;
         ViewHolder holder;
         Message item = itemAt(i);
+        int textColorId;
 
         view = recycle(R.layout.adapter_message_list, convertView, viewGroup);
 
@@ -66,6 +74,14 @@ public class MessageListAdapter extends BaseAdapter<Message> {
                     DateUtils.SECOND_IN_MILLIS
                 )
         );
+
+        if (item.isMine()) {
+            textColorId = getContext().getResources().getColor(R.color.colorAccent);
+        } else {
+            textColorId = getContext().getResources().getColor(R.color.colorPrimary);
+        }
+
+        Stream.of(holder.labelsToColorize).forEach((e) -> e.setTextColor(textColorId));
 
         return view;
     }
