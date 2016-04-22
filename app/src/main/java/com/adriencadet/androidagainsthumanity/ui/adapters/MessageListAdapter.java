@@ -34,9 +34,7 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         @Bind(R.id.adapter_message_list_posted_at)
         TextView postedAt;
 
-        @Bind({ R.id.adapter_message_list_content,
-                R.id.adapter_message_list_poster,
-                R.id.adapter_message_list_posted_at })
+        @Bind({ R.id.adapter_message_list_content })
         List<TextView> labelsToColorize;
 
         ViewHolder(View view) {
@@ -65,7 +63,6 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         }
 
         holder.content.setText(item.getContent());
-        holder.poster.setText(getContext().getString(R.string.from_who, item.getPosterNickname()));
         holder.postedAt.setText(
             DateUtils
                 .getRelativeTimeSpanString(
@@ -76,8 +73,10 @@ public class MessageListAdapter extends BaseAdapter<Message> {
         );
 
         if (item.isMine()) {
+            holder.poster.setText(getContext().getString(R.string.from_me));
             textColorId = getContext().getResources().getColor(R.color.colorAccent);
         } else {
+            holder.poster.setText(getContext().getString(R.string.from_who, item.getPosterNickname()));
             textColorId = getContext().getResources().getColor(R.color.colorPrimary);
         }
 

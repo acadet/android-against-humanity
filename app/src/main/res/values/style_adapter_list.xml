@@ -15,5 +15,6 @@
 
     <style name="AdapterMessageListLabel" parent="HorizontalStretchable">
         <item name="android:textSize">@dimen/body</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 </resources>

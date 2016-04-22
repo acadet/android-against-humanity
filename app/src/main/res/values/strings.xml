@@ -20,4 +20,5 @@
     <string name="modal_join_conversation_create">Let\'s start a new war</string>
 
     <string name="from_who">From %1$s</string>
+    <string name="from_me">The Dude</string>
 </resources>
