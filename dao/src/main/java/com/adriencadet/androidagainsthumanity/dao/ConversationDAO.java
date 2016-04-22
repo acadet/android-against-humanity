@@ -5,8 +5,11 @@ import com.adriencadet.androidagainsthumanity.beans.utils.Optional;
 import com.annimon.stream.Stream;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeComparator;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +65,13 @@ class ConversationDAO extends BaseDAO implements IConversationDAO {
         dal.commitTransaction();
 
         dal.close();
+
+        Collections.sort(outcome, new Comparator<Conversation>() {
+            @Override
+            public int compare(Conversation e1, Conversation e2) {
+                return -DateTimeComparator.getInstance().compare(e1.getUpdatedAt().get(), e2.getUpdatedAt().get());
+            }
+        });
 
         return outcome;
     }
