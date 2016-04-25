@@ -15,6 +15,10 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -27,8 +31,10 @@ public class SocketListenerService extends Service {
     private static final String MESSAGE_EVENT          = "Message";
 
     private static SocketListenerService instance;
-    private        Map<String, Socket>   sockets;
     private static EventBus socketEventBus = EventBus.builder().installDefaultEventBus();
+
+    private Map<String, Socket> sockets;
+    private Subscription        onStartSubscription;
 
     @Override
     public void onCreate() {
@@ -39,21 +45,30 @@ public class SocketListenerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String slug = intent.getStringExtra(SLUG_KEY);
+        onStartSubscription = Observable
+            .create(new Observable.OnSubscribe<Void>() {
+                @Override
+                public void call(Subscriber<? super Void> subscriber) {
+                    String slug = intent.getStringExtra(SLUG_KEY);
 
-        if (!sockets.containsKey(slug)) {
-            try {
-                Socket socket = IO.socket(SOCKET_SERVER_ENDPOINT + slug);
+                    if (!sockets.containsKey(slug)) {
+                        try {
+                            Socket socket = IO.socket(SOCKET_SERVER_ENDPOINT + slug);
 
-                sockets.put(slug, socket);
+                            sockets.put(slug, socket);
 
-                socket.on(MESSAGE_EVENT, (args) -> socketEventBus.post(new MessageEvent(slug, (JSONObject) args[0])));
+                            socket.on(MESSAGE_EVENT, (args) -> socketEventBus.post(new MessageEvent(slug, (JSONObject) args[0])));
 
-                socket.connect();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-        }
+                            socket.connect();
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            })
+            .subscribeOn(Schedulers.computation())
+            .observeOn(Schedulers.computation())
+            .subscribe();
 
         return START_REDELIVER_INTENT;
     }
@@ -70,6 +85,10 @@ public class SocketListenerService extends Service {
 
         for (Map.Entry<String, Socket> entry : sockets.entrySet()) {
             entry.getValue().disconnect().off();
+        }
+
+        if (onStartSubscription != null) {
+            onStartSubscription.unsubscribe();
         }
     }
 

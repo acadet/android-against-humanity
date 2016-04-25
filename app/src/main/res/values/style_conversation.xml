@@ -12,6 +12,7 @@
         <item name="android:animateLayoutChanges">true</item>
         <item name="android:stackFromBottom">true</item>
         <item name="android:transcriptMode">alwaysScroll</item>
+        <item name="android:listSelector">@android:color/transparent</item>
     </style>
 
     <style name="ConversationNoMessageLabel" parent="WrapContent">
