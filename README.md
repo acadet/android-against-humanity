@@ -1,4 +1,4 @@
-# Droid Against Humanity
+# <s>An</s>Droid Against Humanity
 
 An Android sample application using API 21. Hooked up with [this server](https://github.com/acadet/socket-against-humanity).
 
