@@ -2,8 +2,7 @@
 
 An Android sample application using API 21. Hooked up with [this server](https://github.com/acadet/socket-against-humanity).
 
-[Available on the Play Store](https://play.google.com/store/apps/details?id=com.adriencadet.androidagainsthumanity).
-
+<s>Available on the Play Store</s>. The app was rejected due to the conflict with the Android brand. Will be fixed soon. Feel free to download the app [from Github](https://github.com/acadet/android-against-humanity/releases).
 
 <img src="https://raw.githubusercontent.com/acadet/android-against-humanity/master/screenshots/home.png" alt="home.png" width="350px">
 
