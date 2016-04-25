@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Against Humanity</string>
+    <string name="app_name">Droid Against Humanity</string>
 
     <string name="create_join_action">Create or Join</string>
     <string name="nickname_action">Nickname</string>

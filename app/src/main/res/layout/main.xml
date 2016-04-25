@@ -4,11 +4,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
-    <com.adriencadet.androidagainsthumanity.ui.containers.BodyContainer
+    <com.adriencadet.droidagainsthumanity.ui.containers.BodyContainer
         style="@style/MatchParent"
         />
 
-    <com.adriencadet.androidagainsthumanity.ui.containers.FloatingButtonContainer
+    <com.adriencadet.droidagainsthumanity.ui.containers.FloatingButtonContainer
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         style="@style/MatchParentWrapContent"

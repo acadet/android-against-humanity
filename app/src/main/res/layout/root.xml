@@ -2,15 +2,15 @@
 <RelativeLayout
     style="@style/MatchParent">
 
-    <com.adriencadet.androidagainsthumanity.ui.containers.MainContainer
+    <com.adriencadet.droidagainsthumanity.ui.containers.MainContainer
         style="@style/MatchParent"
         />
 
-    <com.adriencadet.androidagainsthumanity.ui.containers.ModalContainer
+    <com.adriencadet.droidagainsthumanity.ui.containers.ModalContainer
         style="@style/MatchParent"
         />
 
-    <com.adriencadet.androidagainsthumanity.ui.containers.ToastContainer
+    <com.adriencadet.droidagainsthumanity.ui.containers.ToastContainer
         style="@style/MatchParentWrapContent"
         />
 
