@@ -5,8 +5,8 @@
     >
 
     <TextView
-        android:id="@+id/notification_content"
-        style="@style/MatchParentWrapContent"
+        android:id="@+id/toast_content"
+        style="@style/Toast"
         />
 
 </FrameLayout>

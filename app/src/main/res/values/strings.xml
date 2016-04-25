@@ -21,4 +21,6 @@
 
     <string name="from_who">From %1$s</string>
     <string name="from_me">The Dude</string>
+
+    <string name="unhandled_error">The guy who built this app was too lazy to handle this error. Try again, should work next time.</string>
 </resources>

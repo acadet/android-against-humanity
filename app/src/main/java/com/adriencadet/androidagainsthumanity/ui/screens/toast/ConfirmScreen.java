@@ -1,6 +1,6 @@
-package com.adriencadet.androidagainsthumanity.ui.screens.modal;
+package com.adriencadet.androidagainsthumanity.ui.screens.toast;
 
-import com.adriencadet.androidagainsthumanity.ui.controllers.modal.NotificationController;
+import com.adriencadet.androidagainsthumanity.ui.controllers.toast.ToastController;
 import com.lyft.scoop.Controller;
 import com.lyft.scoop.EnterTransition;
 import com.lyft.scoop.ExitTransition;
@@ -12,7 +12,7 @@ import com.lyft.scoop.transitions.UpwardSlideTransition;
  * ConfirmScreen
  * <p>
  */
-@Controller(NotificationController.class)
+@Controller(ToastController.class)
 @EnterTransition(DownwardSlideTransition.class)
 @ExitTransition(UpwardSlideTransition.class)
 public class ConfirmScreen extends Screen {

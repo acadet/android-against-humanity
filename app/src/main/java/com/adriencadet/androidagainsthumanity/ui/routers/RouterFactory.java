@@ -41,4 +41,11 @@ public class RouterFactory {
     public IRouter provideModalRouter() {
         return new ModalRouter(new ScreenScooper());
     }
+
+    @Provides
+    @Named("toast")
+    @Singleton
+    public IRouter provideToastRouter() {
+        return new ToastRouter(new ScreenScooper());
+    }
 }

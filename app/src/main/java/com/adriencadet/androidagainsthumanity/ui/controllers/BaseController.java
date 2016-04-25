@@ -3,10 +3,14 @@ package com.adriencadet.androidagainsthumanity.ui.controllers;
 import android.content.Context;
 
 import com.adriencadet.androidagainsthumanity.AndroidAgainstHumanityApplication;
+import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.bll.IConversationBLL;
 import com.adriencadet.androidagainsthumanity.bll.IMessageBLL;
 import com.adriencadet.androidagainsthumanity.bll.IUserBLL;
 import com.adriencadet.androidagainsthumanity.ui.routers.IRouter;
+import com.adriencadet.androidagainsthumanity.ui.screens.toast.AlertScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.toast.ConfirmScreen;
+import com.adriencadet.androidagainsthumanity.ui.screens.toast.InformScreen;
 import com.lyft.scoop.ViewController;
 
 import javax.inject.Inject;
@@ -34,6 +38,7 @@ public abstract class BaseController extends ViewController {
              Timber.e(e, "Unhandled error");
              }
              */
+            alert(context.getString(R.string.unhandled_error));
             Timber.e(e, "Unhandled error");
         }
     }
@@ -48,6 +53,10 @@ public abstract class BaseController extends ViewController {
     @Inject
     @Named("modal")
     public IRouter modalRouter;
+
+    @Inject
+    @Named("toast")
+    public IRouter toastRouter;
 
     @Inject
     public IConversationBLL conversationBLL;
@@ -66,11 +75,11 @@ public abstract class BaseController extends ViewController {
     }
 
     public void inform(String message) {
-        //popupRouter.goTo(new InfoScreen(message));
+        toastRouter.goTo(new InformScreen(message));
     }
 
     public void confirm(String message) {
-        // popupRouter.goTo(new ConfirmScreen(message));
+        toastRouter.goTo(new ConfirmScreen(message));
     }
 
     public void warn(String message) {
@@ -78,6 +87,6 @@ public abstract class BaseController extends ViewController {
     }
 
     public void alert(String message) {
-        //popupRouter.goTo(new AlertScreen(message));
+        toastRouter.goTo(new AlertScreen(message));
     }
 }

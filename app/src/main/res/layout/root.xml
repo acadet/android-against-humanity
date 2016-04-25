@@ -10,4 +10,8 @@
         style="@style/MatchParent"
         />
 
+    <com.adriencadet.androidagainsthumanity.ui.containers.ToastContainer
+        style="@style/MatchParentWrapContent"
+        />
+
 </RelativeLayout>

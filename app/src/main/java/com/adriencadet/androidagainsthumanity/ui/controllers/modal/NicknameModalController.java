@@ -5,7 +5,6 @@ import android.widget.EditText;
 import com.adriencadet.androidagainsthumanity.R;
 import com.adriencadet.androidagainsthumanity.bll.BLLErrors;
 import com.adriencadet.androidagainsthumanity.ui.controllers.BaseController;
-import com.adriencadet.androidagainsthumanity.ui.screens.modal.ConfirmScreen;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -25,7 +24,8 @@ public class NicknameModalController extends BaseController {
     EditText editText;
 
     private void confirmNickname(String value) {
-        modalRouter.resetTo(new ConfirmScreen(context.getString(R.string.modal_nickname_confirmation, value)));
+        modalRouter.goBack();
+        confirm(context.getString(R.string.modal_nickname_confirmation, value));
     }
 
     @Override
