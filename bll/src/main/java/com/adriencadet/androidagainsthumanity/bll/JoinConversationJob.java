@@ -1,7 +1,10 @@
 package com.adriencadet.androidagainsthumanity.bll;
 
+import android.content.Context;
+
 import com.adriencadet.androidagainsthumanity.beans.Conversation;
 import com.adriencadet.androidagainsthumanity.beans.Message;
+import com.adriencadet.androidagainsthumanity.bll.utils.PushNotificationSystem;
 import com.adriencadet.androidagainsthumanity.dao.IConversationDAO;
 import com.adriencadet.androidagainsthumanity.dao.IMessageDAO;
 import com.adriencadet.androidagainsthumanity.dao.IUserDAO;
@@ -47,6 +50,10 @@ class JoinConversationJob {
         public void onNext(Message message) {
             client.onNext(message);
             messageDAO.save(conversation, message);
+            pushNotificationSystem.notify(
+                context.getString(R.string.push_notification_title, conversation.getSlug()),
+                message.getContent()
+            );
         }
 
         void onMessagePosted(Message message) {
@@ -56,18 +63,24 @@ class JoinConversationJob {
 
     private Map<String, CustomSubscriber> customSubscriberMap;
 
-    private IConversationDAO conversationDAO;
-    private IMessageDAO      messageDAO;
-    private IUserDAO         userDAO;
-    private ISocketService   socketService;
-    private PostMessageJob   postMessageJob;
+    private Context                context;
+    private IConversationDAO       conversationDAO;
+    private IMessageDAO            messageDAO;
+    private IUserDAO               userDAO;
+    private ISocketService         socketService;
+    private PostMessageJob         postMessageJob;
+    private PushNotificationSystem pushNotificationSystem;
 
-    JoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService, PostMessageJob postMessageJob) {
+    JoinConversationJob(Context context, IConversationDAO conversationDAO, IMessageDAO messageDAO,
+                        IUserDAO userDAO, ISocketService socketService, PostMessageJob postMessageJob,
+                        PushNotificationSystem pushNotificationSystem) {
+        this.context = context;
         this.conversationDAO = conversationDAO;
         this.messageDAO = messageDAO;
         this.userDAO = userDAO;
         this.socketService = socketService;
         this.postMessageJob = postMessageJob;
+        this.pushNotificationSystem = pushNotificationSystem;
 
         this.customSubscriberMap = new HashMap<>();
     }

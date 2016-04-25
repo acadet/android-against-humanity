@@ -2,11 +2,13 @@ package com.adriencadet.androidagainsthumanity.bll;
 
 import android.content.Context;
 
+import com.adriencadet.androidagainsthumanity.bll.utils.PushNotificationSystem;
 import com.adriencadet.androidagainsthumanity.dao.IConversationDAO;
 import com.adriencadet.androidagainsthumanity.dao.IMessageDAO;
 import com.adriencadet.androidagainsthumanity.dao.IUserDAO;
 import com.adriencadet.androidagainsthumanity.services.sockets.ISocketService;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -18,6 +20,14 @@ import dagger.Provides;
  */
 @Module
 public class BLLFactory {
+    @Provides
+    @Singleton
+    PushNotificationSystem providePushNotificationSystem(
+        Context context, @Named("smallNotificationResourceId") int smallNotificationResourceId,
+        @Named("largeNotificationResourceId") int largeNotificationResourceId) {
+        return new PushNotificationSystem(context, smallNotificationResourceId, largeNotificationResourceId, "group_key_android_against_humanity");
+    }
+
     @Provides
     @Singleton
     CreateConversationJob provideCreateConversationJob(ISocketService socketService, IConversationDAO conversationDAO, IUserDAO userDAO) {
@@ -38,8 +48,10 @@ public class BLLFactory {
 
     @Provides
     @Singleton
-    JoinConversationJob provideJoinConversationJob(IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO, ISocketService socketService, PostMessageJob postMessageJob) {
-        return new JoinConversationJob(conversationDAO, messageDAO, userDAO, socketService, postMessageJob);
+    JoinConversationJob provideJoinConversationJob(
+        Context context, IConversationDAO conversationDAO, IMessageDAO messageDAO, IUserDAO userDAO,
+        ISocketService socketService, PostMessageJob postMessageJob, PushNotificationSystem pushNotificationSystem) {
+        return new JoinConversationJob(context, conversationDAO, messageDAO, userDAO, socketService, postMessageJob, pushNotificationSystem);
     }
 
     @Provides
